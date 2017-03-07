@@ -1,0 +1,68 @@
+.Vt,04000 NEW_HIG1.C 1-Jun-93,11:25:36,`ROGERS' initial entry into library
+.I 57
+/*****************************************************************************
+*
+*  TITLE:        New High Speed Read Packet
+*
+*  DESCRIPTION:  The subprogram "New_High_Speed_Read_Packet"
+*                allocates a High Speed EEPROM Read packet for the
+*                SDLC link.  The header is filled in.
+*                The destination will be determined
+*                by the address to be read.
+*
+*  *k "%n"
+*  FILE NAME:    ""
+*
+*  *k "%v"
+*  VERSION:      ""
+*
+*  REFERENCE:    See CSC reference.
+*
+*****************************************************************************/
+
+#ifndef __sdlcpack
+#include "sdlcpack.h"
+#endif
+
+
+SDLC_PACKET* New_High_Speed_Read_Packet(
+
+     UINT32 address,       /* EEPROM address for read */
+     UINT32 word_count)    /* number of 32-bit words to read */
+
+{
+   static HIGH_SPEED_READ_PACKET high_speed_read_packet;
+   UINT8 destination = DSP1_ADDRESS;
+
+   high_speed_read_packet.command = HIGH_SPEED_READ_COMMAND;
+   high_speed_read_packet.address = address;
+#ifdef __TURBOC__ /*-------------------------------------------------------*/
+   high_speed_read_packet.count_lsb = word_count & 0xffff;
+   high_speed_read_packet.count_msb = word_count >> 16;
+#else /*-------------------------------------------------------------------*/
+   high_speed_read_packet.count = word_count;
+#endif /*------------------------------------------------------------------*/
+
+
+   if (address >= DSP2_EEPROM_ADDRESS)
+   {
+      destination = DSP2_ADDRESS;
+   }
+
+   return New_SDLC_Packet(
+        destination,
+        SDLC_SYSTEM_STATUS_PACKET,
+        sizeof(HIGH_SPEED_READ_PACKET),
+        &high_speed_read_packet);
+
+}   /* New_High_Speed_Read_Packet */
+
+.V NEW_HIG1.C 29-Jun-93,14:21:08,`ROGERS' added destination for all packets
+.C1 27
+.I 3
+     UINT8 destination,         /* destination (0x32 or 0x33) */
+     UINT32 address,            /* EEPROM address for read */
+     UINT32 word_count)         /* number of 32-bit words to read */
+.C30 32
+.C34 43
+.C50 57

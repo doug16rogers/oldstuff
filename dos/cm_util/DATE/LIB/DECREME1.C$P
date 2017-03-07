@@ -1,0 +1,36 @@
+.Vt,04000 DECREME1.CPP 17-May-93,18:19:18,`ROGERS' initial code
+.I 34
+/*****************************************************************************
+*
+*  TITLE:        Decrement
+*
+*  DESCRIPTION:  The subprogram "DATE::Decrement"
+*                in the class DATE
+*                decrements the date by the
+*                given number of days.
+*
+*  *k "%n"
+*  FILE NAME:    ""
+*
+*  *k "%v"
+*  VERSION:      ""
+*
+*  REFERENCE:    None.
+*
+*****************************************************************************/
+
+#ifndef __DATE_CLASS
+#include "date.h"
+#endif
+
+
+void DATE::Decrement(
+
+     int by_days)       // number of days by which to decrement date
+
+{
+
+   Increment(-by_days);
+
+}   // DATE::Decrement
+

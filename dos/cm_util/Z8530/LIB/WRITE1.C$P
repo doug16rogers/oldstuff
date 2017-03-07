@@ -1,0 +1,47 @@
+.Vt,04000 WRITE1.CPP 16-Jun-93,18:16:28,`ROGERS' initial zilog 8530 class
+.I 40
+/*****************************************************************************
+*
+*  TITLE:        Write
+*
+*  DESCRIPTION:  The subprogram "Z8530::Write"
+*                for the class Z8530
+*                writes a value to the specified
+*                register on the given channel.
+*
+*  *k "%n"
+*  FILE NAME:    ""
+*
+*  *k "%v"
+*  VERSION:      ""
+*
+*  REFERENCE:    Zilog 8530 programmer's reference.
+*
+*****************************************************************************/
+
+#ifndef __z8530
+#include "z8530.h"
+#endif
+
+
+void Z8530::Write(
+
+     Z8530::CHANNEL channel,              // channel (A/B) for write
+     Z8530::WRITE_REGISTER _register,     // register for write
+     UINT8 value)                         // value to write to register
+{
+   UINT16 control_port = io_base + (UINT16) channel + control_offset;
+
+   outportb(control_port, (UINT8) _register);
+   goto next_line;
+next_line:
+   outportb(control_port, value);
+
+}   // Z8530::Write
+
+
+.V WRITE1.CPP 29-Jun-93,17:38:42,`ROGERS' changed channel B to be 1, not 2
+.C1 30
+.I 1
+   UINT16 control_port = io_base + (2 * (UINT16) channel) + control_offset;
+.C32 40

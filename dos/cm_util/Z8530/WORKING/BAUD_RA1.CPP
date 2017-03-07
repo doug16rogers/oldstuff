@@ -1,0 +1,41 @@
+/*****************************************************************************
+*
+*  TITLE:        Baud_Rate
+*
+*  DESCRIPTION:  The subprogram "Z8530::Baud_Rate"
+*                for the class Z8530
+*                returns the baud rate according
+*                to the values in read registers
+*                twelve and thirteen, taking into
+*                account the clock speed.
+*
+*                It assumes that the divisor is 1.
+*
+*  *k "%n"
+*  FILE NAME:    "BAUD_RA1.CPP"
+*
+*  *k "%v"
+*  VERSION:      "1"
+*
+*  REFERENCE:    Zilog 8530 programmer's reference.
+*
+*****************************************************************************/
+
+#ifndef __z8530
+#include "z8530.h"
+#endif
+
+
+UINT32 Z8530::Baud_Rate(            // baud rate for channel
+
+     Z8530::CHANNEL channel)     // channel for request
+{
+   UINT32 time_constant;
+
+   time_constant = ((UINT32) Read(channel, RR12) << 16) +
+                    (UINT32) Read(channel, RR13);
+
+   return clock_speed / (2 * (time_constant + 2));
+
+}   // Z8530::Baud_Rate
+

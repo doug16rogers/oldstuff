@@ -1,0 +1,35 @@
+Publics by module
+
+BAUD_RA1	size = 107
+	Z8530::Baud_Rate()              
+
+CHANGE_1	size = 33
+	Z8530::Change_IO_Base(unsigned short)
+
+CLASS_D1	size = 8
+	Z8530::clock_speed                Z8530::control_offset
+	Z8530::data_offset              
+
+IO_BASE1	size = 13
+	Z8530::IO_Base()                
+
+READ1   	size = 39
+	Z8530::Read()                   
+
+READ_DA1	size = 25
+	Z8530::Read_Data()              
+
+SET_BAU1	size = 139
+	Z8530::Set_Baud_Rate(,unsigned long)
+
+WRITE1  	size = 40
+	Z8530::Write(,unsigned char)    
+
+WRITE_D1	size = 26
+	Z8530::Write_Data(,unsigned char)
+
+WRITE_S1	size = 82
+	Z8530::Write_Set(,Z8530::far*,int)
+
+Z85301  	size = 50
+	Z8530::Z8530(unsigned short)    

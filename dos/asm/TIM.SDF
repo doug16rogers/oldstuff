@@ -1,0 +1,58 @@
+
+                  =========================================
+                          SOURCER DEFINITION FILE
+                  =========================================
+
+ __________________ Section 1: CONTROL INFORMATION   __________________
+
+Analysis Options = a b c d e f g h i j k l m n o p q r s t U v w x y z
+uP               = 8088
+File format      = asm
+Label type       = Decimal
+Remarks          = All
+Segment display  = Hex
+Target Assembler = MASM-6.0
+Input filename   = tim.com
+Code style       = Com
+Header           = tim -- display date/time -- (c)
+Drive (output)   = R
+Output filename  = tim.asm
+Passes           = 5
+Xref             = OFF
+
+
+
+ __________________ Section 2: RANGE DEFINITION      __________________
+
+ ==== Segments ==========================
+
+  begin      end      default	   seg	 seg          seg
+ seg:off     off     ds     es	   type	 size         value
+ -------     ----    ----   ----   ----- -----        -----
+seg_a:0100   0339    seg_a  seg_a  auto	 use16       ; 8EF8
+
+ __________________ Section 3: REFERENCE DEFINITIONS __________________
+
+ ==== Subroutines =======================
+  seg:off    type & options	labels & comments
+  -------    --------------	----------------------------------------------
+
+ ==== Locations =========================
+  seg:off    type & options	labels & comments
+  -------    --------------	----------------------------------------------
+seg_a:0100   loc, far		start
+seg_a:019E   loc			       ; loc_1
+seg_a:0201   loc			       ; loc_2
+seg_a:0213   forced, od seg_a
+seg_a:027D   loc			       ; loc_3
+
+ ==== Data Items ========================
+  seg:off    type & options	labels & comments
+  -------    --------------	----------------------------------------------
+seg_a:0124   da, r 0B		copyright
+seg_a:0132   dw				       ; data_2
+seg_a:0168   da, r 4			       ; data_4
+seg_a:0198   db				       ; data_5
+seg_a:0199   db				       ; data_6
+seg_a:019A   dw				       ; data_7
+seg_a:019C   dw				       ; data_8

@@ -1,0 +1,27 @@
+.Vt,04000 CLASS_D1.C 1-Jun-93,13:54:10,`ROGERS' initial entry into library
+.I 25
+/*****************************************************************************
+*
+*  TITLE:        Class Data
+*
+*  DESCRIPTION:  These are class data elements for
+*                the SDLC Packet module.
+*
+*  *k "%n"
+*  FILE NAME:    ""
+*
+*  *k "%v"
+*  VERSION:      ""
+*
+*  REFERENCE:    See CSC reference.
+*
+*****************************************************************************/
+
+#ifndef __sdlcpack
+#include "sdlcpack.h"
+#endif
+
+
+UINT8 local_sdlc_address = GIP_ADDRESS;
+
+

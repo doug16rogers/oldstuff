@@ -1,0 +1,134 @@
+Turbo Assembler	 Version 3.0	    05/20/92 18:12:57	    Page 1
+try.ASM
+
+
+
+      1
+      2				     PAGE  59,132
+      3
+      4				     ;==========================================================================
+      5				     ;==								      ==
+      6				     ;==			     KBF				      ==
+      7				     ;==								      ==
+      8				     ;==      Created:	 20-May-92					      ==
+      9				     ;==      Passes:	 5	    Analysis Options on: AU		      ==
+     10				     ;==								      ==
+     11				     ;==========================================================================
+     12
+     13	      =001C		     keybd_q_tail    equ     1Ch
+     14	      =002C		     psp_envirn_seg  equ     2Ch
+     15
+     16	0000			     seg_a	     segment byte public
+     17						     assume  cs:seg_a, ds:seg_a
+     18
+     19
+     20						     org     100h
+     21
+     22	0100			     kbf	     proc    far
+     23
+     24	0100			     start:
+     25	0100  EB 35				     jmp     short loc_2
+     26	0102  90				     nop
+     27	0103  90				     nop
+     28	0104  90				     nop
+     29	0105  90				     nop
+     30	0106  90				     nop
+     31	0107  90				     nop
+     32
+     33	0108			     kbf	     endp
+     34
+     35				     ;==========================================================================
+     36				     ;
+     37				     ;			     External Entry Point
+     38				     ;
+     39				     ;==========================================================================
+     40
+     41	0108			     int_16h_entry   proc    far
+     42	0108  50				     push    ax
+     43	0109  53				     push    bx
+     44	010A  51				     push    cx
+     45	010B  52				     push    dx
+     46	010C  06				     push    es
+     47	010D  1E				     push    ds
+     48	010E  56				     push    si
+     49	010F  57				     push    di
+     50	0110  9C				     pushf			     ; Push flags
+     51	0111  2E: FF 1E	0104			     call    dword ptr cs:[104h]
+     52	0116  B8 0040				     mov     ax,40h
+     53	0119  8E C0				     mov     es,ax
+     54	011B  26: 8B 36	001C			     mov     si,es:keybd_q_tail
+Turbo Assembler	 Version 3.0	    05/20/92 18:12:57	    Page 2
+try.ASM
+
+
+
+     55	0120  26: 8B 04				     mov     ax,es:[si]
+     56	0123  3C 0D				     cmp     al,0Dh
+     57	0125  75 07				     jne     loc_1		     ; Jump if not equal
+     58	0127  BB 0000				     mov     bx,0
+     59	012A  B4 03				     mov     ah,3
+     60	012C  CD 16				     int     16h		     ; ??INT Non-standard interrupt
+     61	012E			     loc_1:
+     62	012E  5F				     pop     di
+     63	012F  5E				     pop     si
+     64	0130  07				     pop     es
+     65	0131  1F				     pop     ds
+     66	0132  5A				     pop     dx
+     67	0133  59				     pop     cx
+     68	0134  5B				     pop     bx
+     69	0135  58				     pop     ax
+     70	0136  CF				     iret			     ; Interrupt return
+     71	0137			     int_16h_entry   endp
+     72
+     73	0137			     loc_2:
+     74	0137  8E 06 002C			     mov     es,ds:psp_envirn_seg
+     75	013B  B4 49				     mov     ah,49h		     ; 'I'
+     76	013D  CD 21				     int     21h		     ; DOS Services  ah=function 49h
+     77										     ;	release	memory block, es=seg
+     78	013F  B8 3516				     mov     ax,3516h
+     79	0142  CD 21				     int     21h		     ; DOS Services  ah=function 35h
+     80										     ;	get intrpt vector al in	es:bx
+     81	0144  8C 06 0106			     mov     word ptr ds:[106h],es
+     82	0148  89 1E 0104			     mov     word ptr ds:[104h],bx
+     83	014C  BA 0108r				     mov     dx,offset int_16h_entry
+     84	014F  B8 2516				     mov     ax,2516h
+     85	0152  CD 21				     int     21h		     ; DOS Services  ah=function 25h
+     86										     ;	set intrpt vector al to	ds:dx
+     87	0154  BA 0140				     mov     dx,140h
+     88	0157  CD 27				     int     27h		     ; Terminate & stay	resident
+     89										     ;	dx=offset last byte+1, cs=PSP
+     90	0159  EB AD CD 20			     db	     0EBh,0ADh,0CDh, 20h
+     91
+     92	015D			     seg_a	     ends
+     93
+     94
+     95
+     96						     end     start
+Turbo Assembler	 Version 3.0	    05/20/92 18:12:57	    Page 3
+Symbol Table
+
+
+
+
+Symbol Name		Type   Value			   Cref	(defined at #)
+
+??date			Text   "05/20/92"
+??filename		Text   "try	"
+??time			Text   "18:12:57"
+??version		Number 0300
+@Cpu			Text   0101H
+@FileName		Text   try
+@WordSize		Text   2			   #16
+@curseg			Text   seg_a			   #16
+int_16h_entry		Far    seg_a:0108		   #41	83
+kbf			Far    seg_a:0100		   #22
+keybd_q_tail		Number 001C			   #13	54
+loc_1			Near   seg_a:012E		   57  #61
+loc_2			Near   seg_a:0137		   25  #73
+psp_envirn_seg		Number 002C			   #14	74
+start			Near   seg_a:0100		   #24	96
+
+Groups & Segments	Bit Size Align	Combine	Class	   Cref	(defined at #)
+
+seg_a			16  015D Byte	Public		   #16	17  17
+

@@ -1,0 +1,36 @@
+.Vt,04000 _BIT_ST1.CPP 13-May-93,14:21:38,`ROGERS' initial code
+.I 34
+/*****************************************************************************
+*
+*  TITLE:        ~BIT_STREAM
+*
+*  DESCRIPTION:  The class method "~BIT_STREAM"
+*                of class BIT_STREAM
+*                destroys the instance as it is deleted.
+*
+*  *k "%n"
+*  FILE NAME:    ""
+*
+*  *k "%v"
+*  VERSION:      ""
+*
+*  REFERENCE:    None.
+*
+*****************************************************************************/
+
+#include <stdio.h>
+
+#include "bit_stre.h"
+
+
+BIT_STREAM :: ~BIT_STREAM()
+{
+
+   if ( (base != NULL) &&
+        !is_mapped )
+   {
+      delete base;
+   }
+
+}   // BIT_STREAM :: ~BIT_STREAM
+

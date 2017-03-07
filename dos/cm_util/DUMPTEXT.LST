@@ -1,0 +1,6 @@
+Publics by module
+
+DUMPTEXT	size = 1500
+	Dump_Text(ostream far&,void far*,int,char far*)  Dump_Words_Text(ostream far&,void far*,int,char far*)
+	Format(char far*,...)             Hex_Byte_String(void far*,int)
+	Hex_Word_String(void far*,int)  

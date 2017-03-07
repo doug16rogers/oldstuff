@@ -1,0 +1,22 @@
+Publics by module
+
+MOVE_DA1	size = 80
+	_Move_Data                      
+
+SUM161  	size = 33
+	_Sum16                          
+
+SUM321  	size = 60
+	_Sum32                          
+
+SUM81   	size = 32
+	_Sum8                           
+
+SWAP_321	size = 94
+	_Swap_32_Bit_Bytes              
+
+SWAP_BY1	size = 70
+	_Swap_Bytes                     
+
+SWAP_UN1	size = 151
+	_Swap_Units                     

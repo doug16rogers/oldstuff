@@ -1,0 +1,129 @@
+Comparing files PC_INFO.H and PC_INFO.H_
+***** PC_INFO.H
+*  *k "%n"
+*  FILE NAME:    "PC_INFO.H"
+*
+***** PC_INFO.H_
+*  *k "%n"
+*  FILE NAME:    ""
+*
+*****
+
+***** PC_INFO.H
+*  *k "%v"
+*  VERSION:      "1"
+*
+***** PC_INFO.H_
+*  *k "%v"
+*  VERSION:      ""
+*
+*****
+
+***** PC_INFO.H
+
+#ifndef INTERRUPT_ARGUMENTS     // used for interrupt routine C compatibility
+#ifdef __cplusplus
+  #define INTERRUPT_ARGUMENTS void
+#else
+  #define INTERRUPT_ARGUMENTS ...
+#endif
+***** PC_INFO.H_
+
+#ifndef INTERRUPT_ARGUMENTS    // used for interrupt routine C compatibility
+#ifdef __cplusplus
+  #define INTERRUPT_ARGUMENTS  ...
+#else
+  #define INTERRUPT_ARGUMENTS
+#endif
+*****
+
+***** PC_INFO.H
+
+   // _FLAGS bit break-out...
+***** PC_INFO.H_
+
+typedef void interrupt (*INTERRUPT_HANDLER)(INTERRUPT_ARGUMENTS);
+
+
+   // _FLAGS bit break-out...
+*****
+
+***** PC_INFO.H
+   #define PIC_NSEOI            0x20
+
+#define TIMER_PORT      0x40
+#define TIMER_CONTROL   0x43
+
+#define TIMER_CLOCK_SPEED       1193180UL
+#define TIMER_TICKS_PER_DAY     0x1800b0UL
+
+***** PC_INFO.H_
+   #define PIC_NSEOI            0x20
+#define PIC1_MASK       0x21
+#define PIC2_MASK       0xA1
+
+*****
+
+***** PC_INFO.H
+
+typedef void interrupt (*INTERRUPT_HANDLER)();
+
+
+typedef struct
+***** PC_INFO.H_
+
+typedef struct
+*****
+
+***** PC_INFO.H
+{
+   /*00*/ UINT8   int_20_instructions[0x02];   /* exit to DOS instructions */
+   /*02*/ UINT16  memory_size;
+   /*04*/ UINT8   reserved_04;
+   /*05*/ UINT8   call_to_DOS_dispatcher[0x05];
+   /*0a*/ UINT32  int_22_address;              /* Terminate */
+   /*0e*/ UINT32  int_23_address;              /* Ctrl-C */
+   /*12*/ UINT32  int_24_address;              /* Critical error */
+   /*16*/ UINT16  parent_psp_segment;
+   /*18*/ UINT8   open_file_table[0x14];
+   /*2c*/ UINT16  environment_segment;
+   /*2e*/ UINT32  process_ss_sp;        /* from last DOS call (int 0x21) */
+   /*32*/ UINT16  max_open_files;
+   /*34*/ UINT32  open_file_table_pointer;
+   /*38*/ UINT32  previous_psp_pointer; /* DOS SHARE */
+   /*3c*/ UINT8   reserved_3C[0x14];
+   /*50*/ UINT8   int_21_retf_instructions[0x03];
+   /*53*/ UINT8   reserved_53[0x09];
+   /*5c*/ UINT8   fcb_1[0x10];
+   /*6c*/ UINT8   fcb_2[0x14];
+   /*80*/ union
+          {
+             COMMAND_LINE command_line;
+             UINT8 default_dta[0x80];
+          } the;
+
+***** PC_INFO.H_
+{
+   UINT8   int_20_instructions[0x02];   /* exit to DOS instructions */
+   UINT16  memory_size;
+   UINT8   reserved_04;
+   UINT8   call_to_DOS_displatcher[0x05];
+   UINT32  int_22_address;              /* Terminate */
+   UINT32  int_23_address;              /* Ctrl-C */
+   UINT32  int_24_address;              /* Critical error */
+   UINT8   reserved_16[0x16];
+   UINT16  environment_segment;
+   UINT8   reserved_2E[0x22];
+   UINT8   int_21_retf_instructions[0x03];
+   UINT8   reserved_53[0x09];
+   UINT8   fcb_1[0x10];
+   UINT8   fcb_2[0x14];
+   union
+   {
+      COMMAND_LINE command_line;
+      UINT8 default_dta[0x80];
+   } the;
+
+*****
+
+

@@ -1,0 +1,75 @@
+Publics by module
+
+CLASS_D1	size = 187
+	TIME_OF_DAY::default_format       TIME_OF_DAY::hours_per_day
+	TIME_OF_DAY::local_image          TIME_OF_DAY::milliseconds_per_day
+	TIME_OF_DAY::milliseconds_per_hour  TIME_OF_DAY::milliseconds_per_minute
+	TIME_OF_DAY::milliseconds_per_second  TIME_OF_DAY::minutes_per_day
+	TIME_OF_DAY::minutes_per_hour     TIME_OF_DAY::seconds_per_day
+	TIME_OF_DAY::seconds_per_hour     TIME_OF_DAY::seconds_per_minute
+
+DECREME1	size = 27
+	TIME_OF_DAY::Decrement(int)     
+
+DECREME2	size = 27
+	TIME_OF_DAY::Decrement_By_Milliseconds(int)
+
+GET_SYS1	size = 57
+	TIME_OF_DAY::Get_System_Time()  
+
+IMAGE1  	size = 863
+	TIME_OF_DAY::Image(char far*,char far*)
+
+INCREME1	size = 167
+	TIME_OF_DAY::Increment(int)     
+
+INCREME2	size = 147
+	TIME_OF_DAY::Increment_By_Milliseconds(int)
+
+IS_VALI1	size = 96
+	TIME_OF_DAY::Is_Valid(const unsigned char,const ...
+
+MILLISE1	size = 112
+	TIME_OF_DAY::Millisecond_Count()
+
+OP_EQ1  	size = 78
+	TIME_OF_DAY::operator ==(const TIME_OF_DAY far&)
+
+OP_GT1  	size = 62
+	TIME_OF_DAY::operator >(const TIME_OF_DAY far&)
+
+OP_GTEQ 	size = 32
+	TIME_OF_DAY::operator >=(const TIME_OF_DAY far&)
+
+OP_LT1  	size = 138
+	TIME_OF_DAY::operator <(const TIME_OF_DAY far&)
+
+OP_LTEQ1	size = 62
+	TIME_OF_DAY::operator <=(const TIME_OF_DAY far&)
+
+OP_NEQ1 	size = 32
+	TIME_OF_DAY::operator !=(const TIME_OF_DAY far&)
+
+SECOND1 	size = 112
+	TIME_OF_DAY::Second_Count()     
+
+SET1    	size = 86
+	TIME_OF_DAY::Set(const int,const ...
+
+SET2    	size = 118
+	TIME_OF_DAY::Set(const TIME_OF_DAY far&)
+
+SET3    	size = 47
+	TIME_OF_DAY::Set(const unsigned long,const ...
+
+SET_BY_1	size = 206
+	TIME_OF_DAY::Set_By_Millisecond(const unsigned long)
+
+SET_SYS1	size = 52
+	TIME_OF_DAY::Set_System_Time()  
+
+TIME_OF1	size = 75
+	TIME_OF_DAY::TIME_OF_DAY()      
+
+TIME_OF2	size = 101
+	TIME_OF_DAY::TIME_OF_DAY(const int,const ...

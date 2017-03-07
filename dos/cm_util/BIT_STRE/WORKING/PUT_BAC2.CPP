@@ -1,0 +1,54 @@
+/*****************************************************************************
+*
+*  TITLE:        Put_Back
+*
+*  DESCRIPTION:  The class method "Put_Back"
+*                of class BIT_STREAM
+*                puts the specified number of
+*                bits from the given buffer
+*                at the tail of the bit stream.
+*                It returns the number of bits
+*                successfully put.
+*
+*  *k "%n"
+*  FILE NAME:    "PUT_BAC2.CPP"
+*
+*  *k "%v"
+*  VERSION:      "1"
+*
+*  REFERENCE:    None.
+*
+*****************************************************************************/
+
+#include "bit_stre.h"
+
+
+UINT BIT_STREAM :: Put_Back(
+
+     UINT8* out_of_data,
+     UINT number_of_bits)
+{
+   UINT8 value = *out_of_data;
+   UINT8 bit = 1;
+   UINT bits_put = 0;
+
+   while ( (number_of_bits-- > 0) &&
+           (count < size) )
+   {
+      Put_Bit_Back(value & bit);
+      bits_put++;
+
+      bit <<= 1;
+
+      if (bit == 0)
+      {
+         value = *out_of_data++;
+         bit = 1;
+      }
+
+   }   // while
+
+   return bits_put;
+
+}   // BIT_STREAM :: Put_Back
+

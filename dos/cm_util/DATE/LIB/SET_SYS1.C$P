@@ -1,0 +1,42 @@
+.Vt,04000 SET_SYS1.CPP 17-May-93,18:19:24,`ROGERS' initial code
+.I 40
+/*****************************************************************************
+*
+*  TITLE:        Set System Date
+*
+*  DESCRIPTION:  The subprogram "DATE::Set_System_Date"
+*                in the class DATE
+*                sets the DOS date
+*                to the object's date.
+*
+*  *k "%n"
+*  FILE NAME:    ""
+*
+*  *k "%v"
+*  VERSION:      ""
+*
+*  REFERENCE:    None.
+*
+*****************************************************************************/
+
+#include <dos.h>
+
+#ifndef __DATE_CLASS
+#include "date.h"
+#endif
+
+
+void DATE::Set_System_Date()
+
+{
+   date dos_date;
+
+   dos_date.da_year = year;
+   dos_date.da_mon = month;
+   dos_date.da_day = day;
+
+   setdate(&dos_date);
+
+}   // DATE::Set_System_Date
+
+

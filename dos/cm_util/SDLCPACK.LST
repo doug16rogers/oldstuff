@@ -1,0 +1,52 @@
+Publics by module
+
+CLASS_D1	size = 1
+	_local_sdlc_address             
+
+FILL_HI1	size = 84
+	_Fill_High_Speed_Read_Packet    
+
+FILL_RE1	size = 67
+	_Fill_Read_EEPROM_Packet        
+
+FILL_SD1	size = 178
+	_Fill_SDLC_Packet               
+
+FILL_SY1	size = 40
+	_Fill_System_Status_Packet      
+
+FILL_WR1	size = 230
+	_Fill_Write_EEPROM_Packet       
+
+GET_REA1	size = 268
+	_Get_Read_EEPROM_Response       
+
+GET_SDL1	size = 60
+	_Get_SDLC_Packet                
+
+GET_SYS1	size = 116
+	_Get_System_Status_Response     
+
+GET_WRI1	size = 112
+	_Get_Write_EEPROM_Response      
+
+INSERT_1	size = 81
+	_Insert_Checksum                
+
+NEW_HIG1	size = 78
+	_New_High_Speed_Read_Packet     
+
+NEW_REA1	size = 61
+	_New_Read_EEPROM_Packet         
+
+NEW_SDL1	size = 199
+	_New_SDLC_Packet                
+
+NEW_SYS1	size = 34
+	_New_System_Status_Packet       
+
+NEW_WRI1	size = 190
+	_New_Write_EEPROM_Packet        
+
+SET_LOC1	size = 11
+	_Set_Local_SDLC_Address         

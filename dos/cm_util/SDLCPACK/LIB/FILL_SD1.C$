@@ -1,0 +1,60 @@
+.Vt,04000 FILL_SD1.C 1-Jun-93,15:23:12,`ROGERS' initial entry into library
+.I 58
+/*****************************************************************************
+*
+*  TITLE:        Fill SDLC Packet
+*
+*  DESCRIPTION:  The subprogram "Fill_SDLC_Packet"
+*                fills in a generic SDLC packet.
+*
+*  *k "%n"
+*  FILE NAME:    ""
+*
+*  *k "%v"
+*  VERSION:      ""
+*
+*  REFERENCE:    See CSC reference.
+*
+*****************************************************************************/
+
+#ifndef __sdlcpack
+#include "sdlcpack.h"
+#endif
+
+#include "datautil.h"
+
+
+SDLC_PACKET* Fill_SDLC_Packet(
+
+     SDLC_PACKET* packet,       /* packet to fill */
+     UINT8 destination,         /* to whom the packet goes (DSPx_ADDRESS) */
+     UINT  packet_type,         /* type of packet (command, etc) */
+     UINT  data_size,           /* count of bytes in data portion of packet */
+     void* data)                /* packet's data portion; NULL = do not use */
+
+{
+   if (data_size > SDLC_DATA_SIZE)
+   {
+      return NULL; /*-----------------------------------------> return! */
+   }
+
+   if (packet != NULL)
+   {
+      packet->destination = destination;
+      packet->source = local_sdlc_address;
+      packet->type = packet_type;
+      packet->size = SDLC_HEADER_SIZE + data_size;
+
+      if (data != NULL)
+      {
+         Move_Data(data, packet->data, data_size);
+      }
+
+      packet->data[data_size] = -Sum8((UINT8*) packet, packet->size - 1);
+   }
+
+   return packet;
+
+}   /* Fill_SDLC_Packet */
+
+

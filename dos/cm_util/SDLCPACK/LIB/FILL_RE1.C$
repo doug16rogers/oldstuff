@@ -1,0 +1,64 @@
+.Vt,04000 FILL_RE1.C 1-Jun-93,15:18:42,`ROGERS' initial entry into library
+.I 54
+/*****************************************************************************
+*
+*  TITLE:        Fill Read EEPROM Packet
+*
+*  DESCRIPTION:  The subprogram "Fill_Read_EEPROM_Packet"
+*                fills in a Read EEPROM packet for the
+*                SDLC link.  The header is filled in.
+*                The destination will be determined
+*                by the address to be read.
+*
+*  *k "%n"
+*  FILE NAME:    ""
+*
+*  *k "%v"
+*  VERSION:      ""
+*
+*  REFERENCE:    See CSC reference.
+*
+*****************************************************************************/
+
+#ifndef __sdlcpack
+#include "sdlcpack.h"
+#endif
+
+
+SDLC_PACKET* Fill_Read_EEPROM_Packet(
+
+     SDLC_PACKET* packet,       /* packet to fill */
+     UINT32 address,            /* EEPROM address for read */
+     UINT   word_count)         /* number of 32-bit words to read */
+
+{
+   static READ_EEPROM_PACKET eeprom_read_packet;
+   UINT8 destination = DSP1_ADDRESS;
+
+   eeprom_read_packet.command = READ_EEPROM_COMMAND;
+   eeprom_read_packet.size = word_count;
+   eeprom_read_packet.address = address;
+
+   if (address >= DSP2_EEPROM_ADDRESS)
+   {
+      destination = DSP2_ADDRESS;
+   }
+
+   return Fill_SDLC_Packet(
+        packet,
+        destination,
+        SDLC_COMMAND_PACKET,
+        sizeof(READ_EEPROM_PACKET),
+        &eeprom_read_packet);
+
+}   /* Fill_Read_EEPROM_Packet */
+
+
+.V FILL_RE1.C 29-Jun-93,14:20:30,`ROGERS' added destination for all packets
+.C1 7
+.C10 28
+.I 1
+     UINT8 destination,         /* destination (0x32 or 0x33) */
+.C29 33
+.C35 39
+.C45 54

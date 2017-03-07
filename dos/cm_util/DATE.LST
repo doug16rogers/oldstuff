@@ -1,0 +1,67 @@
+Publics by module
+
+CLASS_D1	size = 482
+	DATE::days_in_month               DATE::days_per_year
+	DATE::days_to_month               DATE::default_format
+	DATE::local_image                 DATE::name_of_day
+	DATE::name_of_month             
+
+DATE1   	size = 84
+	DATE::DATE()                    
+
+DATE2   	size = 106
+	DATE::DATE(int,int,int)         
+
+DAY_OF_1	size = 154
+	DATE::Day_Of_Week()             
+
+DECREME1	size = 25
+	DATE::Decrement(int)            
+
+GET_SYS1	size = 52
+	DATE::Get_System_Date()         
+
+IMAGE1  	size = 1033
+	DATE::Image(char far*,const char far*)
+
+INCREME1	size = 172
+	DATE::Increment(int)            
+
+IS_LEAP1	size = 71
+	DATE::Is_Leap_Year(unsigned short)
+
+IS_VALI1	size = 93
+	DATE::Is_Valid(unsigned short,unsigned char,unsigned char)
+
+JULIAN1 	size = 80
+	DATE::Julian_Day()              
+
+OP_EQ1  	size = 62
+	DATE::operator ==(DATE far&)    
+
+OP_GT1  	size = 62
+	DATE::operator >(DATE far&)     
+
+OP_GTEQ1	size = 32
+	DATE::operator >=(DATE far&)    
+
+OP_LT1  	size = 102
+	DATE::operator <(DATE far&)     
+
+OP_LTEQ1	size = 62
+	DATE::operator <=(DATE far&)    
+
+OP_NEQ1 	size = 32
+	DATE::operator !=(DATE far&)    
+
+SET1    	size = 64
+	DATE::Set(int,int,int)          
+
+SET2    	size = 46
+	DATE::Set(DATE far&)            
+
+SET3    	size = 155
+	DATE::Set(int,int)              
+
+SET_SYS1	size = 52
+	DATE::Set_System_Date()         

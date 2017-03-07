@@ -1,0 +1,31 @@
+.Vt,04000 RESET1.CPP 13-May-93,14:24:00,`ROGERS' initial code
+.I 29
+/*****************************************************************************
+*
+*  TITLE:        Reset
+*
+*  DESCRIPTION:  The class method "Reset"
+*                of class BIT_STREAM
+*                resets the bitstream.
+*
+*  *k "%n"
+*  FILE NAME:    ""
+*
+*  *k "%v"
+*  VERSION:      ""
+*
+*  REFERENCE:    None.
+*
+*****************************************************************************/
+
+#include "bit_stre.h"
+
+
+void BIT_STREAM :: Reset()
+{
+   head = 0;
+   tail = 0;
+   count = 0;
+
+}   // BIT_STREAM :: Reset
+

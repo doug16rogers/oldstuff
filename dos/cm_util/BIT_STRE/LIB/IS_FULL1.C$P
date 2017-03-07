@@ -1,0 +1,30 @@
+.Vt,04000 IS_FULL1.CPP 13-May-93,15:08:52,`ROGERS' initial code
+.I 28
+/*****************************************************************************
+*
+*  TITLE:        Is_Full
+*
+*  DESCRIPTION:  The class method "Is_Full"
+*                of class BIT_STREAM
+*                returns true if the bit
+*                stream is full.
+*
+*  *k "%n"
+*  FILE NAME:    ""
+*
+*  *k "%v"
+*  VERSION:      ""
+*
+*  REFERENCE:    None.
+*
+*****************************************************************************/
+
+#include "bit_stre.h"
+
+
+BOOLEAN BIT_STREAM :: Is_Full()
+{
+   return (BOOLEAN) (count >= size);
+
+}   // BIT_STREAM :: Is_Full
+

@@ -1,0 +1,49 @@
+.Vt,04000 GET_BAC1.CPP 13-May-93,14:36:06,`ROGERS' initial code
+.I 47
+/*****************************************************************************
+*
+*  TITLE:        Get_Back
+*
+*  DESCRIPTION:  The class method "Get_Back"
+*                of class BIT_STREAM
+*                removes bits from the head
+*                of the stream.
+*
+*  *k "%n"
+*  FILE NAME:    ""
+*
+*  *k "%v"
+*  VERSION:      ""
+*
+*  REFERENCE:    None.
+*
+*****************************************************************************/
+
+#include "bit_stre.h"
+
+
+UINT32 BIT_STREAM :: Get_Back(
+
+     UINT number_of_bits)
+{
+   UINT32 bit = 1;
+   UINT32 value = 0;
+
+   if (number_of_bits > 32)
+   {
+      number_of_bits = 32;
+   }
+
+   while (number_of_bits-- > 0)
+   {
+      if (Get_Bit_Back())
+      {
+         value |= bit;
+      }
+      bit <<= 1;
+   }
+
+   return value;
+
+}   // BIT_STREAM :: Get_Back
+

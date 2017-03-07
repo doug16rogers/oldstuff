@@ -1,0 +1,1 @@
+k:\bc\bin\tlib /C util.lib +%1\%1.lib, util.lst

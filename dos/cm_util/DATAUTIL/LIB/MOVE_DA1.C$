@@ -1,0 +1,48 @@
+.Vt,04000 MOVE_DA1.C 2-Jun-93,13:46:42,`ROGERS' initial entry
+.I 46
+/*****************************************************************************
+*
+*  TITLE:        Move Data
+*
+*  DESCRIPTION:  The subprogram "Move_Data"
+*                moves the given number of bytes
+*                from the source to the destination.
+*
+*  *k "%n"
+*  FILE NAME:    ""
+*
+*  *k "%v"
+*  VERSION:      ""
+*
+*  REFERENCE:    None.
+*
+*****************************************************************************/
+
+#ifndef __datautil
+#include "datautil.h"
+#endif
+
+
+void Move_Data(
+
+     void* source,      /* source address for move */
+     void* target,      /* destination address for move */
+     UINT  count)       /* number of bytes to move */
+{
+   UINT8* source_byte;
+   UINT8* target_byte;
+
+   if ( (source != NULL) &&
+        (target != NULL) )
+   {
+      source_byte = (UINT8*) source;
+      target_byte = (UINT8*) target;
+
+      while (count-- > 0)
+      {
+         *target_byte++ = *source_byte++;
+      }
+   }
+
+}   /* Move_Data */
+

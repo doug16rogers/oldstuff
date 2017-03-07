@@ -1,0 +1,87 @@
+.Vt,04000 FILL_WR1.C 2-Jun-93,13:45:16,`ROGERS' initial entry into library
+.I 77
+/*****************************************************************************
+*
+*  TITLE:        Fill Write EEPROM Packet
+*
+*  DESCRIPTION:  The subprogram "Fill_Write_EEPROM_Packet"
+*                allocates an EEPROM Write packet for the
+*                SDLC link.  The header is filled in.
+*                The destination will be determined
+*                by the address to be written.
+*
+*  *k "%n"
+*  FILE NAME:    ""
+*
+*  *k "%v"
+*  VERSION:      ""
+*
+*  REFERENCE:    See CSC reference.
+*
+*****************************************************************************/
+
+#ifndef __sdlcpack
+#include "sdlcpack.h"
+#endif
+
+#include "datautil.h"
+
+
+SDLC_PACKET* Fill_Write_EEPROM_Packet(
+
+     SDLC_PACKET* packet,       /* packet to fill */
+     UINT32  address,           /* EEPROM address for write, unswapped */
+     UINT32* data,              /* the list of 32-bit words to write */
+     UINT    word_count)        /* number of 32-bit words to write */
+
+{
+   WRITE_EEPROM_PACKET* write_eeprom_packet;
+   UINT8 destination = DSP1_ADDRESS;
+   UINT  packet_data_size;
+
+   if (address >= DSP2_EEPROM_ADDRESS)
+   {
+      destination = DSP2_ADDRESS;
+   }
+
+   packet_data_size = sizeof(WRITE_EEPROM_PACKET) -
+                      sizeof(write_eeprom_packet->data) +
+                      (word_count * sizeof(UINT32));
+
+   if (Fill_SDLC_Packet(
+        packet,
+        destination,
+        SDLC_COMMAND_PACKET,
+        packet_data_size,
+        NULL) != NULL)
+   {
+      write_eeprom_packet = (WRITE_EEPROM_PACKET*) packet->data;
+
+      write_eeprom_packet->command = WRITE_EEPROM_COMMAND;
+      write_eeprom_packet->size = word_count;
+      write_eeprom_packet->address = address;
+      write_eeprom_packet->checksum =
+           CHECKSUM_CONSTANT - Sum32(data, word_count);
+      if (data != NULL)
+      {
+         Move_Data(data,
+                   write_eeprom_packet->data,
+                   word_count * sizeof(UINT32));
+      }
+      packet->data[packet_data_size] = -Sum8((UINT8*) packet,
+           packet->size - 1);
+   }
+
+   return packet;
+
+}   /* Fill_Write_EEPROM_Packet */
+
+
+.V FILL_WR1.C 29-Jun-93,14:20:46,`ROGERS' added destination for all packets
+.C1 7
+.C10 30
+.I 1
+     UINT8 destination,         /* destination (0x32 or 0x33) */
+.C31 36
+.C38 39
+.C45 77

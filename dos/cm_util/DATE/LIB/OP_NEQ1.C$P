@@ -1,0 +1,37 @@
+.Vt,04000 OP_NEQ1.CPP 17-May-93,18:19:22,`ROGERS' initial code
+.I 35
+/*****************************************************************************
+*
+*  TITLE:        operator !=
+*
+*  DESCRIPTION:  The subprogram "DATE::operator !="
+*                in the class DATE
+*                returns wether the given date
+*                is different than
+*                the object's.
+*
+*  *k "%n"
+*  FILE NAME:    ""
+*
+*  *k "%v"
+*  VERSION:      ""
+*
+*  REFERENCE:    None.
+*
+*****************************************************************************/
+
+#ifndef __DATE_CLASS
+#include "date.h"
+#endif
+
+
+BOOLEAN DATE::operator != (
+
+     DATE& date)
+
+{
+
+   return (BOOLEAN) !(*this == date);
+
+}   // DATE::operator !=
+

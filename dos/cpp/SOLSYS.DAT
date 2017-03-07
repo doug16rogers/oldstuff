@@ -1,0 +1,11 @@
+sun       mass=1.989E+30   diam=1.39E+9
+moon      mass=7.35E+22    diam=3.48E+6   dmean(earth)=3.84E+8
+mercury   mass=3.225E+23   diam=4.84E+6   dmean(sun)=5.79E+10
+venus     mass=4.87E+24    diam=1.23E+7   dmean(sun)=1.081E+11
+earth     mass=5.977E+24   diam=1.275E+7  dmean(sun)=1.496E+11
+mars      mass=6.45E+23    diam=6.82E+6   dmean(sun)=2.2767E+11
+jupiter   mass=1.898E+27   diam=1.40E+8   dmean(sun)=7.7876E+11
+saturn    mass=5.69E+26    diam=1.15E+8   dmean(sun)=1.427E+12
+uranus    mass=8.67E+25    diam=4.73E+7   dmean(sun)=2.8721E+12
+neptune   mass=1.029E+26   diam=4.31E+7   dmean(sun)=4.5004E+12
+pluto     mass=4.78E+24    diam=5.73E+6   dmean(sun)=5.9050E+12

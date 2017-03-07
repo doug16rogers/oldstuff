@@ -1,0 +1,63 @@
+.Vt,04000 NEW_REA1.C 1-Jun-93,11:27:54,`ROGERS' initial entry into library
+.I 52
+/*****************************************************************************
+*
+*  TITLE:        New Read EEPROM Packet
+*
+*  DESCRIPTION:  The subprogram "New_Read_EEPROM_Packet"
+*                allocates an Read EEPROM packet for the
+*                SDLC link.  The header is filled in.
+*                The destination will be determined
+*                by the address to be read.
+*
+*  *k "%n"
+*  FILE NAME:    ""
+*
+*  *k "%v"
+*  VERSION:      ""
+*
+*  REFERENCE:    See CSC reference.
+*
+*****************************************************************************/
+
+#ifndef __sdlcpack
+#include "sdlcpack.h"
+#endif
+
+
+SDLC_PACKET* New_Read_EEPROM_Packet(
+
+     UINT32 address,       /* EEPROM address for read */
+     UINT   word_count)    /* number of 32-bit words to read */
+
+{
+   static READ_EEPROM_PACKET eeprom_read_packet;
+   UINT8 destination = DSP1_ADDRESS;
+
+   eeprom_read_packet.command = READ_EEPROM_COMMAND;
+   eeprom_read_packet.size = word_count;
+   eeprom_read_packet.address = address;
+
+   if (address >= DSP2_EEPROM_ADDRESS)
+   {
+      destination = DSP2_ADDRESS;
+   }
+
+   return New_SDLC_Packet(
+        destination,
+        SDLC_COMMAND_PACKET,
+        sizeof(READ_EEPROM_PACKET),
+        &eeprom_read_packet);
+
+}   /* New_Read_EEPROM_Packet */
+
+
+.V NEW_REA1.C 29-Jun-93,14:21:18,`ROGERS' added destination for all packets
+.C1 27
+.I 3
+     UINT8 destination,         /* destination (0x32 or 0x33) */
+     UINT32 address,            /* EEPROM address for read */
+     UINT   word_count)         /* number of 32-bit words to read */
+.C30 32
+.C34 38
+.C44 52

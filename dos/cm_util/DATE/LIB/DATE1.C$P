@@ -1,0 +1,31 @@
+.Vt,04000 DATE1.CPP 18-May-93,12:48:00,`ROGERS' initial code
+.I 29
+/*****************************************************************************
+*
+*  TITLE:        DATE
+*
+*  DESCRIPTION:  The default constructor "DATE::DATE" initializes
+*                the date to 1980.01.01.
+*
+*  *k "%n"
+*  FILE NAME:    ""
+*
+*  *k "%v"
+*  VERSION:      ""
+*
+*  REFERENCE:    None.
+*
+*****************************************************************************/
+
+#ifndef __DATE_CLASS
+#include "date.h"
+#endif
+
+
+DATE::DATE()
+{
+
+   last_format = default_format;
+   Set(1980, January, 1);
+
+}   // DATE::DATE

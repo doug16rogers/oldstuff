@@ -1,0 +1,73 @@
+Publics by module
+
+BIT_STR1	size = 146
+	BIT_STREAM::BIT_STREAM(unsigned int)
+
+BIT_STR2	size = 128
+	BIT_STREAM::BIT_STREAM(void far*,unsigned int)
+
+COUNT1  	size = 14
+	BIT_STREAM::Count()             
+
+GET1    	size = 105
+	BIT_STREAM::Get(unsigned int)   
+
+GET2    	size = 77
+	BIT_STREAM::Get(unsigned char far*,unsigned int)
+
+GET_BAC1	size = 105
+	BIT_STREAM::Get_Back(unsigned int)
+
+GET_BAC2	size = 77
+	BIT_STREAM::Get_Back(unsigned char far*,unsigned int)
+
+GET_BIT1	size = 121
+	BIT_STREAM::Get_Bit()           
+
+GET_BIT2	size = 123
+	BIT_STREAM::Get_Bit_Back()      
+
+IC_EMPT1	size = 24
+	BIT_STREAM::Is_Empty()          
+
+IS_FULL1	size = 30
+	BIT_STREAM::Is_Full()           
+
+OP_BRAC1	size = 81
+	BIT_STREAM::operator [](unsigned int)
+
+PEEK1   	size = 196
+	BIT_STREAM::Peek(unsigned int,unsigned int)
+
+POKE1   	size = 113
+	BIT_STREAM::Poke(unsigned int,unsigned char)
+
+PUT1    	size = 88
+	BIT_STREAM::Put(unsigned long,unsigned int)
+
+PUT2    	size = 108
+	BIT_STREAM::Put(unsigned char far*,unsigned int)
+
+PUT_BAC1	size = 88
+	BIT_STREAM::Put_Back(unsigned long,unsigned int)
+
+PUT_BAC2	size = 108
+	BIT_STREAM::Put_Back(unsigned char far*,unsigned int)
+
+PUT_BIT1	size = 134
+	BIT_STREAM::Put_Bit(unsigned char)
+
+PUT_BIT2	size = 136
+	BIT_STREAM::Put_Bit_Back(unsigned char)
+
+RESET1  	size = 32
+	BIT_STREAM::Reset()             
+
+UNDO_GE1	size = 72
+	BIT_STREAM::Undo_Get(unsigned int)
+
+UNDO_PU1	size = 54
+	BIT_STREAM::Undo_Put(unsigned int)
+
+_BIT_ST1	size = 86
+	BIT_STREAM::~BIT_STREAM()       

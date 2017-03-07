@@ -1,0 +1,210 @@
+Turbo Assembler	 Version 3.0	    05/22/92 11:55:25	    Page 1
+kbfast.ASM
+
+
+
+      1				     ;============================================================================
+      2				     ;	kbfast.asm
+      3				     ;
+      4				     ;	Sets the typematic rate	on the keyboard	to maximum whenever Ctrl-Enter
+      5				     ;	is pressed.  This is a TSR.  It	doesn't	yet unload itself.
+      6				     ;
+      7				     ;----------------------------------------------------------------------------
+      8					     .286
+      9	0000				     .model tiny
+     10					     startupcode
+1    11					     ORG     100h
+1    12	*000			     @Startup:
+     13	0000				     .code
+     14
+     15					     assume cs:DGROUP,ds:DGROUP,es:DGROUP
+     16
+     17	      =0009		     KB_INT	     equ 009h
+     18	      =0016		     KB_SERVICES_INT equ 016h
+     19	      =0021		     DOS_INT	     equ 021h
+     20	      =0027		     TSR_INT	     equ 027h
+     21
+     22	      =0017		     KB_SHIFT	     equ 00017h	     ;offset of	shift status byte in seg 0040
+     23	      =001C		     KB_TAIL	     equ 0001ch	     ;offset (in seg 0040) of keyboard buffer tail
+     24
+     25	      =000D		     CR		     equ 00dh
+     26
+     27				     ;============================================================================
+     28				     ;	start
+     29				     ;----------------------------------------------------------------------------
+     30
+     31					     org 100h
+     32
+     33	0100  EB 77 90		     start:  jmp load_start	     ;skip past	data and resident portion of code
+     34
+     35
+     36				     ;============================================================================
+     37				     ;	data
+     38				     ;----------------------------------------------------------------------------
+     39
+     40	0103				     codeseg
+     41	0103  30		     debug_char	     db	'0'	     ;for debug	-- appears on second row of screen
+     42	0104  00000000		     old_kb_isr	     dd	0	     ;old keyboard interrupt service routine (ISR)
+     43
+     44
+     45				     ;============================================================================
+     46				     ;	kb_fast_int
+     47				     ;
+     48				     ;	Sets the typematic rate	on the keyboard	to maximum whenever Ctrl-Enter
+     49				     ;	is pressed.  This is a TSR.  It	doesn't	yet unload itself.
+     50				     ;
+     51				     ;----------------------------------------------------------------------------
+     52	0108			     kb_fast_int:
+     53
+     54	0108  60			     pusha
+     55
+     56	0109  8C C8			     mov ax,cs		     ;use our own data segment
+     57	010B  8E D8			     mov ds,ax
+Turbo Assembler	 Version 3.0	    05/22/92 11:55:25	    Page 2
+kbfast.ASM
+
+
+
+     58
+     59	010D  B4 1F			     mov ah,01fh
+     60	010F  A0 0103r			     mov al,debug_char
+     61	0112  FE C0			     inc al
+     62	0114  A2 0103r			     mov debug_char,al
+     63
+     64	0117  BA B800			     mov dx,0b800h
+     65	011A  8E C2			     mov es,dx
+     66	011C  26: A3 00A0		     mov es:[160],ax
+     67
+     68	0120  61			     popa
+     69
+     70	0121  CF			     iret
+     71
+     72	0122  60			     pusha
+     73
+     74	0123  B8 B800			     mov ax,0b800h
+     75	0126  8E D8			     mov ds,ax
+     76	0128  B8 1F23			     mov ax,01f00h + '#'
+     77	012B  A3 00A0			     mov ds:[160],ax
+     78
+     79	012E  8C C8			     mov ax,cs		     ;use our own data segment
+     80	0130  8E D8			     mov ds,ax
+     81
+     82	0132  9C			     pushf			     ;iret will	pop flags in old ISR
+     83	0133  FF 1E 0104r		     call dword	ptr old_kb_isr	     ;call the old ISR
+     84
+     85	0137  61			     popa
+     86	0138  CF			     iret
+     87
+     88	0139  B8 0040			     mov ax,00040h	     ;low DOS memory locations
+     89	013C  8E C0			     mov es,ax
+     90	013E  26: 8B 36	001C		     mov si,es:[KB_TAIL]     ;get tail pointer
+     91	0143  26: 8B 04			     mov ax,es:[si]	     ;get scan code at tail pointer
+     92	0146  3C 0D			     cmp al,CR		     ;see if it's a CR
+     93	0148  75 0E			     jne nothing_to_do	     ;skip if it's not
+     94
+     95	014A  2E: C6 06	0103r 2A	     mov cs:debug_char,'*'	;have debug section display a star
+     96
+     97	0150  B7 00			     mov bh,0		     ;minimum delay of 250 ms
+     98	0152  B3 00			     mov bl,0		     ;maximum typematic	rate of	30 keys	per second
+     99	0154  B4 03			     mov ah,003h	     ;set typematic rate service
+    100	0156  CD 16			     int KB_SERVICES_INT     ;call keyboard services interrupt
+    101
+    102	0158			     nothing_to_do:
+    103	0158			     debug:
+    104	0158  B8 B800			     mov ax,0b800h	     ;screen segment (color, text)
+    105	015B  8E C0			     mov es,ax
+    106	015D  2E: A0 0103r		     mov al,cs:debug_char	;current debug character
+    107	0161  B4 1F			     mov ah,01fh	     ;white on blue
+    108	0163  26: A3 00A0		     mov es:[160],ax	     ;write to first char in second line
+    109	0167  FE C0			     inc al		     ;go to next char
+    110	0169  3C 39			     cmp al,'9'		     ;see if need to wrap
+    111	016B  2E: A2 0103r		     mov cs:debug_char,al	;dump it out before test
+    112	016F  7E 06			     jle end_isr	     ;if still ok to show, skip	to end
+    113	0171  2E: C6 06	0103r 30	     mov cs:debug_char,'0'	;reset to 0
+    114
+Turbo Assembler	 Version 3.0	    05/22/92 11:55:25	    Page 3
+kbfast.ASM
+
+
+
+    115	0177			     end_isr:
+    116	0177  61			     popa		     ;restore registers
+    117
+    118	0178  CF			     iret
+    119
+    120				     ;endp    kb_fast_int
+    121
+    122
+    123				     ;============================================================================
+    124				     ;	transient portion of code -- loads interrupt service routine (ISR).
+    125				     ;----------------------------------------------------------------------------
+    126
+    127	0179			     load_start:
+    128	0179  B0 09			     mov al,KB_INT	     ;ask DOS for KB interrupt vector
+    129	017B  B4 35			     mov ah,035h	     ;get interrupt vector
+    130	017D  CD 21			     int DOS_INT	     ;call DOS services	interrupt
+    131
+    132	017F  8C 06 0106r		     mov word ptr old_kb_isr+2,es    ;store old	interrupt vector, segment
+    133	0183  89 1E 0104r		     mov word ptr old_kb_isr,bx	     ;offset
+    134
+    135	0187  B8 0000s			     mov ax,SEG(kb_fast_int)	     ;load pointer to our vector
+    136	018A  8E D8			     mov ds,ax
+    137	018C  BA 0108r			     mov dx,OFFSET(kb_fast_int)	     ;...
+    138
+    139	018F  B0 09			     mov al,KB_INT	     ;tell'm we're replacing the KB interrupt
+    140	0191  B4 25			     mov ah,025h	     ;set interrupt vector service
+    141	0193  CD 21			     int DOS_INT	     ;call DOS services	interrupt
+    142
+    143	0195  BA 0179r			     mov dx,OFFSET(load_start)	     ;get end of resident part
+    144	0198  81 C2 0100		     add dx,00100h		     ;add in a safety margin
+    145	019C  83 E2 FE			     and dx,0fffeh		     ;make even
+    146	019F  8B E2			     mov sp,dx			     ;set the stack pointer
+    147	01A1  CD 27			     int TSR_INT		     ;terminate-and-stay-resident
+    148
+    149				     end      start
+Turbo Assembler	 Version 3.0	    05/22/92 11:55:25	    Page 4
+Symbol Table
+
+
+
+
+Symbol Name		Type   Value			   Cref	(defined at #)
+
+??date			Text   "05/22/92"
+??filename		Text   "kbfast	"
+??time			Text   "11:55:25"
+??version		Number 0300
+@32Bit			Text   0			   #9
+@CodeSize		Text   0			   #9
+@Cpu			Text   0507H			   #8
+@DataSize		Text   0			   #9
+@FileName		Text   kbfast
+@Interface		Text   00h			   #9
+@Model			Text   1			   #9
+@WordSize		Text   2			   #8  #13  #40
+@code			Text   DGROUP			   #9
+@curseg			Text   _TEXT			   #13	#40
+@data			Text   DGROUP			   #9
+@stack			Text   DGROUP			   #9
+CR			Number 000D			   #25	92
+DOS_INT			Number 0021			   #19	130  141
+KB_INT			Number 0009			   #17	128  139
+KB_SERVICES_INT		Number 0016			   #18	100
+KB_SHIFT		Number 0017			   #22
+KB_TAIL			Number 001C			   #23	90
+TSR_INT			Number 0027			   #20	147
+debug			Near   DGROUP:0158		   #103
+debug_char		Byte   DGROUP:0103		   #41	60  62	95  106	 111  113
+end_isr			Near   DGROUP:0177		   112	#115
+kb_fast_int		Near   DGROUP:0108		   #52	135  137
+load_start		Near   DGROUP:0179		   33  #127  143
+nothing_to_do		Near   DGROUP:0158		   93  #102
+old_kb_isr		Dword  DGROUP:0104		   #42	83  132	 133
+start			Near   DGROUP:0100		   #33	149
+
+Groups & Segments	Bit Size Align	Combine	Class	   Cref	(defined at #)
+
+DGROUP			Group				   #9  9  15  15  15
+  _DATA			16  0000 Word	Public	DATA	   #9
+  _TEXT			16  01A3 Word	Public	CODE	   #9  #13  #40
+

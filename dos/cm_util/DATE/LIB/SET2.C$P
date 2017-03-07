@@ -1,0 +1,36 @@
+.Vt,04000 SET2.CPP 17-May-93,18:19:22,`ROGERS' initial code
+.I 34
+/*****************************************************************************
+*
+*  TITLE:        Set
+*
+*  DESCRIPTION:  The subprogram "DATE::Set"
+*                in the class DATE
+*                sets the object's date to
+*                the given DATE object's date.
+*
+*  *k "%n"
+*  FILE NAME:    ""
+*
+*  *k "%v"
+*  VERSION:      ""
+*
+*  REFERENCE:    None.
+*
+*****************************************************************************/
+
+#ifndef __DATE_CLASS
+#include "date.h"
+#endif
+
+
+void DATE::Set(
+
+     DATE& date)
+
+{
+   Set(date.year, date.month, date.day);
+
+}   // DATE::Set
+
+

@@ -1,0 +1,43 @@
+.Vt,04000 UNDO_GE1.CPP 13-May-93,16:48:44,`ROGERS' initial code
+.I 41
+/*****************************************************************************
+*
+*  TITLE:        Undo_Get
+*
+*  DESCRIPTION:  The class method "Undo_Get"
+*                of class BIT_STREAM
+*                ungets the given number
+*                of bits by moving back the
+*                tail of the bit stream.
+*
+*  *k "%n"
+*  FILE NAME:    ""
+*
+*  *k "%v"
+*  VERSION:      ""
+*
+*  REFERENCE:    None.
+*
+*****************************************************************************/
+
+#include "bit_stre.h"
+
+
+void BIT_STREAM :: Undo_Get(
+
+     UINT number_of_bits)
+{
+   if ((number_of_bits + count) > size)
+   {
+      number_of_bits = size - count;
+   }
+
+   if (tail < number_of_bits)
+   {
+      tail += size;
+   }
+
+   tail -= number_of_bits;
+
+}   // BIT_STREAM :: Undo_Get
+

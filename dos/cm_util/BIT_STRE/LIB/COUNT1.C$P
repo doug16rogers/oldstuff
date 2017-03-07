@@ -1,0 +1,30 @@
+.Vt,04000 COUNT1.CPP 13-May-93,15:11:08,`ROGERS' initial code
+.I 28
+/*****************************************************************************
+*
+*  TITLE:        Count
+*
+*  DESCRIPTION:  The class method "Count"
+*                of class BIT_STREAM
+*                returns the number of bits
+*                currently in the bit stream.
+*
+*  *k "%n"
+*  FILE NAME:    ""
+*
+*  *k "%v"
+*  VERSION:      ""
+*
+*  REFERENCE:    None.
+*
+*****************************************************************************/
+
+#include "bit_stre.h"
+
+
+UINT BIT_STREAM :: Count()
+{
+   return count;
+
+}   // BIT_STREAM :: Count
+

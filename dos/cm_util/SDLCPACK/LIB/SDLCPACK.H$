@@ -1,0 +1,449 @@
+.Vt,04000 SDLCPACK.H 1-Jun-93,14:54:28,`ROGERS' initial entry into library
+.I 297
+#ifndef __sdlcpack
+#define __sdlcpack
+/*****************************************************************************
+*
+*  TITLE:        SDLC Packet
+*
+*  DESCRIPTION:  The module "SDLC_Packet"
+*                provides SDLC packet definitions
+*                and creation methods.
+*
+*                All New_XXXX packets are returned as pointers
+*                to newly allocated SDLC_PACKET to allow
+*                passing of the packets in a generic fashion.
+*
+*  *k "%n"
+*  FILE NAME:    ""
+*
+*  *k "%v"
+*  VERSION:      ""
+*
+*  REFERENCE:    ICI SDLC Packet Document.
+*
+*****************************************************************************/
+
+#ifndef __icitypes
+#include "icitypes.h"
+#endif
+
+
+     /* packet types... */
+
+#define SDLC_SYSTEM_STATUS_PACKET   ((UINT8) 0x2)
+#define SDLC_COMMAND_PACKET         ((UINT8) 0x0)
+
+     /* commands... */
+
+#define READ_EEPROM_COMMAND         ((UINT8) 0x07)
+#define WRITE_EEPROM_COMMAND        ((UINT8) 0x08)
+#define HIGH_SPEED_READ_COMMAND     ((UINT8) 0x11)
+#define SYSTEM_STATUS_COMMAND       ((UINT8) 0x63)
+
+     /* SDLC destination addresses... */
+
+#define DSP1_ADDRESS                ((UINT8) 0x32)
+#define DSP2_ADDRESS                ((UINT8) 0x33)
+#define GIP_ADDRESS                 ((UINT8) 0x48)
+
+     /* EEPROM addresses... */
+
+#define DSP1_EEPROM_ADDRESS         ((UINT32) 0x0UL)
+#define DSP2_EEPROM_ADDRESS         ((UINT32) 0x10000000UL)
+
+     /* 32-bit checksum constant for read/write commands */
+
+#define CHECKSUM_CONSTANT           ((UINT32) 0xDEADBEEFUL)
+
+
+
+typedef struct
+{
+   BIT destination : 8;
+   BIT source : 8;
+   BIT size : 16;
+   BIT type : 8;
+   UINT8 data[1034];
+   UINT8 _checksum_;    /* appended just after data, not necessarily here */
+
+} SDLC_PACKET;
+
+
+#define SDLC_DATA_SIZE          ( sizeof(((SDLC_PACKET*)NULL)->data) )
+#define SDLC_HEADER_SIZE        ( sizeof(SDLC_PACKET) - SDLC_DATA_SIZE )
+
+    /* NOTE: SDLC_HEADER_SIZE includes the checksum! */
+
+
+
+typedef struct
+{
+   UINT8  command;      /* command word, always 0x07 */
+   UINT8  size;         /* number of 32-bit words to read */
+   UINT32 address;      /* address from which to read */
+
+} READ_EEPROM_PACKET;
+
+
+#ifdef __TURBOC__ /*-------------------------------------------------------*/
+
+typedef struct
+{
+   BIT    command :  8; /* command word, always 0x11 */
+   UINT16 count_lsb;    /* number of 32-bit words to read, 16 lsb's */
+   UINT8  count_msb;    /*    most significant 8 bits */
+   UINT32 address;      /* address from which to read */
+
+} HIGH_SPEED_READ_PACKET;
+
+#else /*-------------------------------------------------------------------*/
+
+typedef struct
+{
+   BIT    command :  8; /* command word, always 0x11 */
+   BIT    count   : 24; /* number of 32-bit words to read */
+   UINT32 address;      /* address from which to read */
+
+} HIGH_SPEED_READ_PACKET;
+
+#endif /*-------------------------------------------------------------------*/
+
+#define MAX_WRITE_EEPROM_DATA   0x100
+
+typedef struct
+{
+   UINT8  command;      /* command word, always 0x08 */
+   UINT8  size;         /* number of 32-bit words to write */
+   UINT32 address;      /* address to which to write */
+   UINT32 checksum;     /* sums with data words to 0xdeadbeef */
+   UINT32 data[MAX_WRITE_EEPROM_DATA];  /* 32-bit data words to write */
+
+} WRITE_EEPROM_PACKET;
+
+
+typedef WRITE_EEPROM_PACKET READ_EEPROM_RESPONSE_PACKET;
+
+
+typedef struct
+{
+   UINT8  command;      /* command word, always 0x08 */
+   UINT8  code;         /* return code from DSP; 0 => success */
+
+} WRITE_EEPROM_RESPONSE_PACKET;
+
+
+typedef struct
+{
+   UINT8 command;       /* command word, always 0x63 */
+   UINT8 code;
+
+} SYSTEM_STATUS_PACKET;
+
+typedef SYSTEM_STATUS_PACKET SYSTEM_STATUS_RESPONSE_PACKET;
+
+
+
+/*-------------------------------------------------------------------------
+   Source: "Class_D1.c"
+  -------------------------------------------------------------------------*/
+
+extern UINT8 local_sdlc_address;
+
+
+/*-------------------------------------------------------------------------
+   Source: "Fill_Hig1.c"
+  -------------------------------------------------------------------------*/
+
+SDLC_PACKET* Fill_High_Speed_Read_Packet(
+
+     SDLC_PACKET* packet,       /* packet to fill */
+     UINT32 address,            /* EEPROM address for read */
+     UINT32 word_count);        /* number of 32-bit words to read */
+
+/*-------------------------------------------------------------------------
+   Source: "Fill_Re1.c"
+  -------------------------------------------------------------------------*/
+
+SDLC_PACKET* Fill_Read_EEPROM_Packet(
+
+     SDLC_PACKET* packet,       /* packet to fill */
+     UINT32 address,            /* EEPROM address for read */
+     UINT   word_count);        /* number of 32-bit words to read */
+
+/*-------------------------------------------------------------------------
+   Source: "Fill_SD1.c"
+  -------------------------------------------------------------------------*/
+
+SDLC_PACKET* Fill_SDLC_Packet(
+
+     SDLC_PACKET* packet,       /* packet to fill */
+     UINT8 destination,         /* to whom the packet goes (DSPx_ADDRESS) */
+     UINT  packet_type,         /* type of packet (command, etc) */
+     UINT  data_size,           /* count of bytes in data portion of packet */
+     void* data);               /* packet's data portion; NULL = do not use */
+
+/*-------------------------------------------------------------------------
+   Source: "Fill_Sy1.c"
+  -------------------------------------------------------------------------*/
+
+SDLC_PACKET* Fill_System_Status_Packet(
+
+     SDLC_PACKET* packet,       /* packet to fill */
+     UINT8 destination);        /* to whom the packet goes (DSPx_ADDRESS) */
+
+/*-------------------------------------------------------------------------
+   Source: "Fill_Wr1.c"
+  -------------------------------------------------------------------------*/
+
+SDLC_PACKET* Fill_Write_EEPROM_Packet(
+
+     SDLC_PACKET* packet,       /* packet to fill */
+     UINT32  address,           /* EEPROM address for write, unswapped */
+     UINT32* data,              /* the list of 32-bit words to write */
+     UINT    word_count);       /* number of 32-bit words to write */
+
+/*-------------------------------------------------------------------------
+   Source: "Get_Rea1.c"
+  -------------------------------------------------------------------------*/
+
+BOOLEAN Get_Read_EEPROM_Response(       /* response was valid */
+
+     SDLC_PACKET* packet,       /* packet from which to extract response */
+     UINT32*  address,          /* EEPROM address from which data was read */
+     UINT32** data,             /* pointer to words read (inside packet) */
+     UINT*    word_count);      /* number of 32-bit words read */
+
+/*-------------------------------------------------------------------------
+   Source: "Get_Sys1.c"
+  -------------------------------------------------------------------------*/
+
+BOOLEAN Get_System_Status_Response(     /* whether response was valid */
+
+     SDLC_PACKET* packet,       /* packet from which to extract response */
+     UINT8* status_code);       /* status code from DSP */
+
+/*-------------------------------------------------------------------------
+   Source: "Get_Wri1.c"
+  -------------------------------------------------------------------------*/
+
+BOOLEAN Get_Write_EEPROM_Response(       /* whether response was valid */
+
+     SDLC_PACKET* packet);      /* packet from which to extract response */
+
+/*-------------------------------------------------------------------------
+   Source: "Insert_1.c"
+  -------------------------------------------------------------------------*/
+
+void Insert_Checksum(
+
+     SDLC_PACKET* packet);      /* packet into which to insert the checksum */
+
+/*-------------------------------------------------------------------------
+   Source: "New_Hig1.c"
+  -------------------------------------------------------------------------*/
+
+SDLC_PACKET* New_High_Speed_Read_Packet(
+
+     UINT32 address,       /* EEPROM address for read */
+     UINT32 word_count);   /* number of 32-bit words to read */
+
+/*-------------------------------------------------------------------------
+   Source: "New_Rea1.c"
+  -------------------------------------------------------------------------*/
+
+SDLC_PACKET* New_Read_EEPROM_Packet(
+
+     UINT32 address,       /* EEPROM address for read */
+     UINT   word_count);   /* number of 32-bit words to read */
+
+/*-------------------------------------------------------------------------
+   Source: "New_SDL1.c"
+  -------------------------------------------------------------------------*/
+
+SDLC_PACKET* New_SDLC_Packet(
+
+     UINT8 destination,         /* to whom the packet goes (DSPx_ADDRESS) */
+     UINT  packet_type,         /* type of packet (command, etc) */
+     UINT  data_size,           /* count of bytes in data portion of packet */
+     void* data);               /* packet's data portion; NULL = do not use */
+
+/*-------------------------------------------------------------------------
+   Source: "New_Sys1.c"
+  -------------------------------------------------------------------------*/
+
+SDLC_PACKET* New_System_Status_Packet(
+
+     UINT8 destination);        /* to whom the packet goes (DSPx_ADDRESS) */
+
+/*-------------------------------------------------------------------------
+   Source: "New_Wri1.c"
+  -------------------------------------------------------------------------*/
+
+SDLC_PACKET* New_Write_EEPROM_Packet(
+
+     UINT32  address,      /* EEPROM address for write, unswapped */
+     UINT32* data,         /* the list of 32-bit words to write */
+     UINT    word_count);  /* number of 32-bit words to write */
+
+/*-------------------------------------------------------------------------
+   Source: "Set_Loc1.c"
+  -------------------------------------------------------------------------*/
+
+void Set_Local_SDLC_Address(
+
+     UINT8 source_address);     /* address of this device on SDLC LAN */
+
+
+#endif  /* if not already included */
+
+.V SDLCPACK.H 29-Jun-93,14:21:56,`ROGERS' added destination for all packets
+.C1 47
+.C53 158
+.I 1
+     UINT8 destination,         /* destination (0x32 or 0x33) */
+.C159 168
+.I 1
+     UINT8 destination,         /* destination (0x32 or 0x33) */
+.C169 199
+.I 1
+     UINT8 destination,         /* destination (0x32 or 0x33) */
+.C200 245
+.I 1
+     UINT8 destination,         /* destination (0x32 or 0x33) */
+.C159 162
+.C250 254
+.I 1
+     UINT8 destination,         /* destination (0x32 or 0x33) */
+.C169 172
+.C259 282
+.I 1
+     UINT8 destination,         /* destination (0x32 or 0x33) */
+.C200 204
+.C288 297
+.V SDLCPACK.H 30-Jun-93,16:17:24,`ROGERS' added Get_SDLC_Packet
+.C1 213
+.I 1
+   Source: "Get_SDL1.c"
+.C142 143
+.I 3
+BOOLEAN Get_SDLC_Packet(        /* whether packet is valid */
+
+     SDLC_PACKET* packet);      /* packet to check */
+.C212 298
+.V SDLCPACK.H 30-Jun-93,17:09:44,`ROGERS' added LANGUAGE modifier for all
+.N functions so that it can be linked with c++ code
+.C1 29
+.I 2
+#ifndef LANGUAGE
+#define LANGUAGE        extern "C"
+.C27 28
+.C30 150
+.I 1
+LANGUAGE SDLC_PACKET* Fill_High_Speed_Read_Packet(
+.C152 161
+.I 1
+LANGUAGE SDLC_PACKET* Fill_Read_EEPROM_Packet(
+.C163 172
+.I 1
+LANGUAGE SDLC_PACKET* Fill_SDLC_Packet(
+.C174 184
+.I 1
+LANGUAGE SDLC_PACKET* Fill_System_Status_Packet(
+.C186 193
+.I 1
+LANGUAGE SDLC_PACKET* Fill_Write_EEPROM_Packet(
+.C195 205
+.I 1
+LANGUAGE BOOLEAN Get_Read_EEPROM_Response(       /* response was valid */
+.C207 216
+.I 1
+LANGUAGE BOOLEAN Get_SDLC_Packet(        /* whether packet is valid */
+.C218 224
+.I 1
+LANGUAGE BOOLEAN Get_System_Status_Response(     /* whether response was valid */
+.C226 233
+.I 1
+LANGUAGE BOOLEAN Get_Write_EEPROM_Response(       /* whether response was valid */
+.C235 241
+.I 1
+LANGUAGE void Insert_Checksum(
+.C243 249
+.I 1
+LANGUAGE SDLC_PACKET* New_High_Speed_Read_Packet(
+.C251 259
+.I 1
+LANGUAGE SDLC_PACKET* New_Read_EEPROM_Packet(
+.C261 269
+.I 1
+LANGUAGE SDLC_PACKET* New_SDLC_Packet(
+.C271 280
+.I 1
+LANGUAGE SDLC_PACKET* New_System_Status_Packet(
+.C282 288
+.I 1
+LANGUAGE SDLC_PACKET* New_Write_EEPROM_Packet(
+.C290 299
+.I 1
+LANGUAGE void Set_Local_SDLC_Address(
+.C301 306
+.V SDLCPACK.H 7-Jul-93,10:12:58,`ROGERS' replaced LANGUAGE stuff with check
+.N for __cplusplus
+.C1 28
+.I 2
+#ifdef __cplusplus
+extern "C" {
+.C32 154
+.I 1
+SDLC_PACKET* Fill_High_Speed_Read_Packet(
+.C156 165
+.I 1
+SDLC_PACKET* Fill_Read_EEPROM_Packet(
+.C167 176
+.I 1
+SDLC_PACKET* Fill_SDLC_Packet(
+.C178 188
+.I 1
+SDLC_PACKET* Fill_System_Status_Packet(
+.C190 197
+.I 1
+SDLC_PACKET* Fill_Write_EEPROM_Packet(
+.C199 209
+.I 1
+BOOLEAN Get_Read_EEPROM_Response(       /* response was valid */
+.C211 220
+.I 1
+BOOLEAN Get_SDLC_Packet(        /* whether packet is valid */
+.C222 228
+.I 1
+BOOLEAN Get_System_Status_Response(     /* whether response was valid */
+.C230 237
+.I 1
+BOOLEAN Get_Write_EEPROM_Response(       /* whether response was valid */
+.C239 245
+.I 1
+void Insert_Checksum(
+.C247 253
+.I 1
+SDLC_PACKET* New_High_Speed_Read_Packet(
+.C255 263
+.I 1
+SDLC_PACKET* New_Read_EEPROM_Packet(
+.C265 273
+.I 1
+SDLC_PACKET* New_SDLC_Packet(
+.C275 284
+.I 1
+SDLC_PACKET* New_System_Status_Packet(
+.C286 292
+.I 1
+SDLC_PACKET* New_Write_EEPROM_Packet(
+.C294 303
+.I 1
+void Set_Local_SDLC_Address(
+.C305 308
+.I 2
+#ifdef __cplusplus
+}   // extern "C"
+.C27 28
+.C309 310

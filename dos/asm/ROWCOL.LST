@@ -1,0 +1,229 @@
+Turbo Assembler	 Version 3.0	    05/20/92 13:20:24	    Page 1
+rowcol.ASM
+
+
+
+      1				     ;============================================================================
+      2				     ;	rowcol.asm
+      3				     ;
+      4				     ;	Sets the cursor's row and column to the	decimal	values provided	on the
+      5				     ;	commandline:
+      6				     ;
+      7				     ;	  rowcol <row> <column>	<page>
+      8				     ;
+      9				     ;	Any unspecified	values are assumed to be 0 (the	first row/column/page).
+     10				     ;
+     11				     ;----------------------------------------------------------------------------
+     12	0000				     .model tiny
+     13	0000				     .code
+     14
+     15					     org 100h
+     16
+     17	0100  BE 0080		     start:  mov si,080h	     ;point to start of	commandline
+     18	0103  8A 0C			     mov cl,ds:[si]	     ;get count	of chars on commandline
+     19	0105  46			     inc si		     ;go to next character
+     20	0106  32 ED			     xor ch,ch		     ;clear msb	of count
+     21	0108  BB 000A			     mov bx,10		     ;use decimal
+     22	010B  E8 0016			     call get_number	     ;get row argument
+     23	010E  50			     push ax		     ;save it
+     24	010F  E8 0012			     call get_number	     ;get column argument
+     25	0112  5A			     pop dx		     ;get row into dx
+     26	0113  8A F2			     mov dh,dl		     ;move row into dh
+     27	0115  8A D0			     mov dl,al		     ;move column into dl
+     28	0117  52			     push dx		     ;save row/col info
+     29	0118  E8 0009			     call get_number	     ;get page number (default to zero)
+     30	011B  8A F8			     mov bh,al		     ;get page number
+     31	011D  5A			     pop dx		     ;restore row/column
+     32	011E  B4 02			     mov ah,002h	     ;indicate set-cursor-position function
+     33	0120  CD 10			     int 10h		     ;call video services interrupt
+     34
+     35	0122  CD 20			     int 20h		     ;return to	DOS
+     36
+     37				     ;============================================================================
+     38				     ;	get_number
+     39				     ;
+     40				     ;	Gets a number of the indicated base from a string.  Initial white-space
+     41				     ;	is automatically scanned.
+     42				     ;
+     43				     ;	register usage:
+     44				     ;	in   ds:si   pointer to	string from which to read the number in	ASCII
+     45				     ;	in   cx	     length of input string
+     46				     ;	in   bx	     base to use (2-36)
+     47				     ;
+     48				     ;	out  ax	     number value of the string
+     49				     ;	out  cx	     number of characters not scanned
+     50				     ;	out  si	     incremented for each character read
+     51				     ;	out  cf	     carry flag	set if no information was read.
+     52				     ;
+     53				     ;	registers disrupted:  ax, cx, dx, si, di, flags(c,d)
+     54				     ;
+     55				     ;----------------------------------------------------------------------------
+     56	0124			     proc    get_number	near
+     57
+Turbo Assembler	 Version 3.0	    05/20/92 13:20:24	    Page 2
+rowcol.ASM
+
+
+
+     58	0124			     find_digit:
+     59	0124  33 C0			     xor ax,ax		     ;initialize to zero
+     60	0126  E3 3A			     jcxz bad_result	     ;nothing to read!
+     61	0128  FC			     cld		     ;set the direction	flag to	forward
+     62
+     63	0129			     initial_loop:
+     64	0129  AC			     lodsb		     ;get a character into al
+     65	012A  49			     dec cx		     ;decrement	count of characters scanned
+     66
+     67	012B  3C 20			     cmp al,' '		     ;see if a space
+     68	012D  74 10			     je	scan_next
+     69	012F  3C 09			     cmp al,09h		     ;see if a tab
+     70	0131  74 0C			     je	scan_next
+     71	0133  E8 002E			     call char_to_digit	     ;convert to a digit
+     72	0136  72 28			     jc	unget_and_bad	     ;unget character, but return as bad
+     73	0138  3A C3			     cmp al,bl		     ;see if it's within our base specification
+     74	013A  7D 24			     jge unget_and_bad	     ;oops! greater than (or equal to) base
+     75	013C  EB 05 90			     jmp load_loop	     ;got one digit, now continue
+     76
+     77	013F			     scan_next:
+     78	013F  E3 21			     jcxz bad_result	     ;well, nothing but	white-space
+     79	0141  EB E6			     jmp initial_loop	     ;check for	more white-space
+     80
+     81	0143			     load_loop:
+     82	0143  8B F8			     mov di,ax		     ;save current value
+     83	0145  AC			     lodsb		     ;get next character
+     84	0146  49			     dec cx
+     85	0147  E8 001A			     call char_to_digit	     ;convert to digit
+     86	014A  72 0E			     jc	restore_unget_and_good	 ;unget	char and quit
+     87	014C  50			     push ax		     ;save digit
+     88	014D  8B C7			     mov ax,di		     ;get old value
+     89	014F  F7 E3			     mul bx		     ;multiply by base
+     90	0151  5A			     pop dx		     ;get digit
+     91	0152  32 F6			     xor dh,dh		     ;make sure	MSB is clear
+     92	0154  03 C2			     add ax,dx		     ;add in digit
+     93	0156  E3 06			     jcxz good_result	     ;see if at	end of string
+     94	0158  EB E9			     jmp load_loop	     ;go back for more
+     95
+     96	015A			     restore_unget_and_good:
+     97	015A  8B C7			     mov ax,di		     ;get value	of number from save register
+     98	015C  41			     inc cx		     ;unget the	character
+     99	015D  4E			     dec si
+    100
+    101	015E			     good_result:
+    102	015E  F8			     clc		     ;tell world data was ok
+    103	015F  C3			     retn		     ;return to	sender,	address	unknown
+    104
+    105	0160			     unget_and_bad:
+    106	0160  41			     inc cx		     ;unget the	character
+    107	0161  4E			     dec si
+    108	0162			     bad_result:
+    109	0162  F9			     stc		     ;tell world data was bad
+    110	0163  C3			     retn		     ;return to	sender,	address	unknown
+    111
+    112	0164			     endp    get_number
+    113
+    114
+Turbo Assembler	 Version 3.0	    05/20/92 13:20:24	    Page 3
+rowcol.ASM
+
+
+
+    115				     ;============================================================================
+    116				     ;	char_to_digit
+    117				     ;
+    118				     ;	Converts the character to a digit as follows:
+    119				     ;	  '0'..'9' => 000h..009h, no carry
+    120				     ;	  'A'..'Z' => 00ah..023h, no carry
+    121				     ;	  'a'..'z' => 00ah..023h, no carry
+    122				     ;	  others   => carry flag set
+    123				     ;
+    124				     ;	register usage:
+    125				     ;	in   al	     character to convert
+    126				     ;
+    127				     ;	out  al	     digit after conversion
+    128				     ;	out  cf	     carry flag	set if invalid
+    129				     ;
+    130				     ;	registers affected: al,	flags
+    131				     ;
+    132				     ;----------------------------------------------------------------------------
+    133	0164			     proc    char_to_digit near
+    134
+    135	0164  3C 30			     cmp al,'0'		     ;check '0'..'9'
+    136	0166  7C 22			     jl	not_a_digit
+    137	0168  3C 39			     cmp al,'9'
+    138	016A  7F 05			     jg	check_uppercase
+    139	016C  2C 30			     sub al,'0'
+    140	016E  EB 18 90			     jmp a_digit
+    141
+    142	0171			     check_uppercase:		     ;check 'A'..'Z'
+    143	0171  3C 41			     cmp al,'A'
+    144	0173  7C 15			     jl	not_a_digit
+    145	0175  3C 5A			     cmp al,'Z'
+    146	0177  7F 05			     jg	check_lowercase
+    147	0179  2C 37			     sub al,('A'-10)
+    148	017B  EB 0B 90			     jmp a_digit
+    149
+    150	017E			     check_lowercase:		     ;check 'a'..'z'
+    151	017E  3C 61			     cmp al,'a'
+    152	0180  7C 08			     jl	not_a_digit
+    153	0182  3C 7A			     cmp al,'z'
+    154	0184  7F F8			     jg	check_lowercase
+    155	0186  2C 57			     sub al,('a'-10)
+    156
+    157	0188			     a_digit:
+    158	0188  F8			     clc		     ;tell world digit was ok
+    159	0189  C3			     retn		     ;return to	sender
+    160
+    161	018A			     not_a_digit:
+    162	018A  F9			     stc		     ;tell world the digit was bad
+    163	018B  C3			     retn		     ;return to	sender
+    164
+    165	018C			     endp    char_to_digit
+    166
+    167
+    168				     end      start
+Turbo Assembler	 Version 3.0	    05/20/92 13:20:24	    Page 4
+Symbol Table
+
+
+
+
+Symbol Name		Type   Value			   Cref	(defined at #)
+
+??date			Text   "05/20/92"
+??filename		Text   "rowcol	"
+??time			Text   "13:20:24"
+??version		Number 0300
+@32Bit			Text   0			   #12
+@CodeSize		Text   0			   #12
+@Cpu			Text   0101H
+@DataSize		Text   0			   #12
+@FileName		Text   rowcol
+@Interface		Text   00h			   #12
+@Model			Text   1			   #12
+@WordSize		Text   2			   #13
+@code			Text   DGROUP			   #12
+@curseg			Text   _TEXT			   #13
+@data			Text   DGROUP			   #12
+@stack			Text   DGROUP			   #12
+a_digit			Near   DGROUP:0188		   140	148  #157
+bad_result		Near   DGROUP:0162		   60  78  #108
+char_to_digit		Near   DGROUP:0164		   71  85  #133
+check_lowercase		Near   DGROUP:017E		   146	#150  154
+check_uppercase		Near   DGROUP:0171		   138	#142
+find_digit		Near   DGROUP:0124		   #58
+get_number		Near   DGROUP:0124		   22  24  29  #56
+good_result		Near   DGROUP:015E		   93  #101
+initial_loop		Near   DGROUP:0129		   #63	79
+load_loop		Near   DGROUP:0143		   75  #81  94
+not_a_digit		Near   DGROUP:018A		   136	144  152  #161
+restore_unget_and_good	Near   DGROUP:015A		   86  #96
+scan_next		Near   DGROUP:013F		   68  70  #77
+start			Near   DGROUP:0100		   #17	168
+unget_and_bad		Near   DGROUP:0160		   72  74  #105
+
+Groups & Segments	Bit Size Align	Combine	Class	   Cref	(defined at #)
+
+DGROUP			Group				   #12	12
+  _DATA			16  0000 Word	Public	DATA	   #12
+  _TEXT			16  018C Word	Public	CODE	   #12	#13
+

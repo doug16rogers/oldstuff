@@ -1,0 +1,39 @@
+.Vt,04000 OP_EQ1.CPP 17-May-93,18:19:22,`ROGERS' initial code
+.I 37
+/*****************************************************************************
+*
+*  TITLE:        operator ==
+*
+*  DESCRIPTION:  The subprogram "DATE::operator =="
+*                in the class DATE
+*                returns whether the
+*                given date is the same
+*                as the object's.
+*
+*  *k "%n"
+*  FILE NAME:    ""
+*
+*  *k "%v"
+*  VERSION:      ""
+*
+*  REFERENCE:    None.
+*
+*****************************************************************************/
+
+#ifndef __DATE_CLASS
+#include "date.h"
+#endif
+
+
+BOOLEAN DATE::operator == (
+
+     DATE& date)
+
+{
+
+   return (BOOLEAN) ((year == date.year) &&
+                     (month == date.month) &&
+                     (day == date.day));
+
+}   // DATE::operator ==
+

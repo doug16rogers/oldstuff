@@ -1,0 +1,30 @@
+.Vt,04000 IC_EMPT1.CPP 13-May-93,15:08:20,`ROGERS' initial code
+.I 28
+/*****************************************************************************
+*
+*  TITLE:        Is_Empty
+*
+*  DESCRIPTION:  The class method "Is_Empty"
+*                of class BIT_STREAM
+*                returns true if the bit stream is
+*                empty.
+*
+*  *k "%n"
+*  FILE NAME:    ""
+*
+*  *k "%v"
+*  VERSION:      ""
+*
+*  REFERENCE:    None.
+*
+*****************************************************************************/
+
+#include "bit_stre.h"
+
+
+BOOLEAN BIT_STREAM :: Is_Empty()
+{
+   return (BOOLEAN) (count == 0);
+
+}   // BIT_STREAM :: Is_Empty
+
