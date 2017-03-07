@@ -1,0 +1,22 @@
+
+PKZIP (R)   FAST!   Create/Update Utility   Version 2.04g   02-01-93
+Copr. 1989-1993 PKWARE Inc.  All Rights Reserved.  Shareware Version
+PKZIP Reg. U.S. Pat. and Tm. Off.   Patent No. 5,051,745
+
+þ 80486 CPU detected.
+þ XMS version 3.00 detected.
+þ Novell Netware version 3.11 detected.
+þ DPMI version 0.90 detected.
+
+Searching ZIP: FRAC.ZIP
+
+ Length  Method   Size  Ratio   Date    Time    CRC-32  Attr  Name
+ ------  ------   ----- -----   ----    ----   -------- ----  ----
+   3428  Implode   1538  56%  12-09-88  15:38  f67ef311 --w-  JULIA5.PAS
+  25872  Implode  17340  33%  12-09-88  14:21  d6ff7454 --w-  JULIAIIM.EXE
+   2085  Implode   1043  50%  12-09-88  14:21  5e71b3f5 --w-  JULIAIIM.PAS
+   4126  Implode   1662  60%  09-05-89  20:18  2481a73e --w-  MAND.C
+  62280  Implode  37830  40%  09-05-89  20:18  4bde08f8 --w-  MAND.EXE
+     34  Stored      34   0%  09-01-89  14:25  895afbb2 --w-  MAND.PRJ
+ ------          ------  ---                                  -------
+  97825           59447  40%                                        6

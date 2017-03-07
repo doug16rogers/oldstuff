@@ -1,0 +1,50 @@
+
+PKZIP (R)   FAST!   Create/Update Utility   Version 2.04g   02-01-93
+Copr. 1989-1993 PKWARE Inc.  All Rights Reserved.  Shareware Version
+PKZIP Reg. U.S. Pat. and Tm. Off.   Patent No. 5,051,745
+
+þ 80486 CPU detected.
+þ XMS version 3.00 detected.
+þ Novell Netware version 3.11 detected.
+þ DPMI version 0.90 detected.
+
+Searching ZIP: ASM.ZIP
+
+ Length  Method   Size  Ratio   Date    Time    CRC-32  Attr  Name
+ ------  ------   ----- -----   ----    ----   -------- ----  ----
+   5820  DeflatN   1633  72%  05-14-92  10:27  f2add129 --w-  ROWCOL.ASM
+   2027  DeflatN    670  67%  11-23-91  15:03  802fc4b8 --w-  KB.CPP
+   9771  DeflatN   3215  68%  05-20-92  13:20  db99510c --w-  ROWCOL.LST
+    296  DeflatN    169  43%  08-04-92  16:47  74e6ff63 --w-  KBF.1
+    452  DeflatN    146  68%  05-14-92  10:39  db42de56 --w-  FUN.BAT
+    140  Stored     140   0%  05-20-92  13:20  f2e5e12e --w-  ROWCOL.COM
+   4900  DeflatN   1392  72%  06-17-92  15:52  370bb202 --w-  KBFAST.ASM
+    570  DeflatN    356  38%  11-08-90  10:50  18e2137b --w-  TIM.COM
+   3841  DeflatN   1753  55%  06-16-90  23:48  98fdaf2a --w-  UTIL.ASM
+   3080  DeflatN   1081  65%  06-17-92  15:58  28dddec6 --w-  KBFAST.CPP
+    260  DeflatN    260   0%  05-20-92  13:20  09696a78 --w-  ROWCOL.OBJ
+   8719  DeflatN   2878  67%  05-22-92  11:55  34817c5f --w-  KBFAST.LST
+    296  DeflatN    140  53%  08-04-92  17:47  5b258776 --w-  KBF.COM
+     41  DeflatN     41   0%  05-20-92  17:39  436011d1 --w-  ASM.BAT
+    150  DeflatN     84  44%  05-20-92  13:20  4920f5e3 --w-  ROWCOL.MAP
+    203  DeflatN    134  34%  05-22-92  11:55  49aa4888 --w-  KBFAST.MAP
+   6408  DeflatN   3622  44%  06-17-92  15:58  197dbefb --w-  KBFAST.EXE
+   4433  DeflatN    836  82%  06-17-92  15:58  84411528 --w-  TCDEF.DPR
+   4776  DeflatN    648  87%  05-22-92  11:56  4f668db6 --w-  KBFAST.HEX
+    828  DeflatN    629  25%  06-17-92  15:58  41e7e2e2 --w-  KBFAST.OBJ
+    144  DeflatN     89  39%  05-21-92  16:33  8f249ba8 --w-  KBFOLD.COM
+    806  DeflatN    330  60%  06-17-92  15:59  0292cf15 --w-  TCDEF.DSK
+   1888  DeflatN    701  63%  05-20-92  18:11  a2407f10 --w-  TRY.ASM
+     89  DeflatN     89   0%  05-20-92  16:51  c77a159d --w-  OLDKBF.COM
+     99  DeflatN     64  36%  05-20-92  18:13  25fe63bb --w-  TRY.MAP
+     93  DeflatN     93   0%  05-20-92  18:13  31b7c050 --w-  TRY.COM
+    168  Stored     168   0%  05-20-92  18:12  44aaaf0c --w-  TRY.OBJ
+   4909  DeflatN   1650  67%  05-20-92  18:12  3551b42a --w-  TRY.LST
+  11820  DeflatN   2030  83%  06-17-92  13:54  0da9a4f8 --w-  TCCONFIG.TC
+     96  DeflatN     45  54%  05-21-92  14:47  0193c01a --w-  TEST.COM
+   6479  DeflatN   1078  84%  07-21-92  16:32  ca7225ff --w-  TIM.ASM
+   2041  DeflatN    674  67%  07-21-92  16:32  bced71f6 --w-  TIM.SDF
+    228  DeflatN    142  38%  07-21-92  16:36  e7ceed22 --w-  STATE.RST
+  49325  DeflatN   8642  83%  04-29-91  17:37  9d37572f --w-  LIFE.ASM
+ ------          ------  ---                                  -------
+ 135196           35622  74%                                       34

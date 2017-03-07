@@ -1,0 +1,40 @@
+
+PKZIP (R)   FAST!   Create/Update Utility   Version 2.04g   02-01-93
+Copr. 1989-1993 PKWARE Inc.  All Rights Reserved.  Shareware Version
+PKZIP Reg. U.S. Pat. and Tm. Off.   Patent No. 5,051,745
+
+þ 80486 CPU detected.
+þ XMS version 3.00 detected.
+þ Novell Netware version 3.11 detected.
+þ DPMI version 0.90 detected.
+
+Searching ZIP: CS.ZIP
+
+ Length  Method   Size  Ratio   Date    Time    CRC-32  Attr  Name
+ ------  ------   ----- -----   ----    ----   -------- ----  ----
+   8385  Implode    637  93%  08-26-88  19:33  0f8f2e1d --w-  CYBER.SPC
+    936  Implode    289  70%  08-31-88  10:39  76460189 --w-  FIRST.SOB
+   7760  Implode   5101  35%  06-21-89  17:57  9fe66d48 --w-  FUN.EXE
+    742  Implode    391  48%  06-21-89  17:37  002f4bf7 --w-  FUN.PAS
+   3504  Implode   2406  32%  08-17-88  14:27  862d328c --w-  GETREG.EXE
+    587  Implode    315  47%  08-17-88  14:29  b1a0abf8 --w-  GETREG.PAS
+   3424  Implode   2366  31%  08-17-88  16:50  90a17cb9 --w-  INTFUN.EXE
+    425  Implode    273  36%  08-17-88  16:49  be72b7ae --w-  INTFUN.PAS
+    753  Implode    270  65%  12-06-88  14:52  b25863a9 --w-  MAP.SOB
+    868  Implode    301  66%  09-28-89  14:45  34c717de --w-  NEWTON.DAT
+  28496  Implode  18508  36%  09-28-89  14:45  8016de4b --w-  NEWTON.EXE
+   4921  Implode   1984  60%  08-28-89  09:36  8020e3aa --w-  NEWTON.PAS
+  37552  Implode  22441  41%  06-22-89  10:56  b751af27 --w-  OBJTEST.EXE
+   2229  Implode   1073  52%  06-22-89  10:54  1304a651 --w-  OBJTEST.PAS
+   4224  Implode   3188  25%  08-26-88  18:34  467d1273 --w-  OSCAN.EXE
+   2621  Implode   1022  62%  08-26-88  18:42  6ac4c2c9 --w-  OSCAN.PAS
+   4944  Implode   3659  26%  08-26-88  19:39  c5906689 --w-  SCAN.EXE
+   4023  Implode   1416  65%  08-26-88  19:39  65bd4fd1 --w-  SCAN.PAS
+   1157  Implode    330  72%  06-15-89  17:40  25f93491 --w-  SECOND.SOB
+    790  Implode    285  64%  08-18-89  15:51  8d106ce7 --w-  STARTUP.NEW
+   5296  Implode   4117  23%  12-06-88  13:59  22cb696b --w-  STOR.EXE
+    176  Shrunk     147  17%  12-06-88  13:59  3df0bc12 --w-  STOR.PAS
+   1824  Implode    372  80%  06-22-89  13:10  e7416ecc --w-  THIRD.SOB
+   1226  Implode    283  77%  08-29-89  17:02  c59b05b9 --w-  TURBO.TP
+ ------          ------  ---                                  -------
+ 126863           71174  44%                                       24

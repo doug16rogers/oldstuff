@@ -1,0 +1,21 @@
+
+PKZIP (R)   FAST!   Create/Update Utility   Version 2.04g   02-01-93
+Copr. 1989-1993 PKWARE Inc.  All Rights Reserved.  Shareware Version
+PKZIP Reg. U.S. Pat. and Tm. Off.   Patent No. 5,051,745
+
+þ 80486 CPU detected.
+þ XMS version 3.00 detected.
+þ Novell Netware version 3.11 detected.
+þ DPMI version 0.90 detected.
+
+Searching ZIP: FSELECT.ZIP
+
+ Length  Method   Size  Ratio   Date    Time    CRC-32  Attr  Name
+ ------  ------   ----- -----   ----    ----   -------- ----  ----
+    919  DeflatN    415  55%  12-10-92  13:32  32e6ca0e --w-  FSELECT.CPP
+  10339  DeflatN   2150  80%  11-11-92  13:53  71a694b1 --w-  TEMPLIST.HPP
+   4715  DeflatN    886  82%  09-28-92  10:48  aa91a995 --w-  CMPCONST.HPP
+    874  DeflatN    293  67%  12-10-92  13:06  bc4afd6d --w-  OBJECT.HPP
+    360  DeflatN    126  65%  09-28-92  15:57  a6be1f4e --w-  TYPES.HPP
+ ------          ------  ---                                  -------
+  17207            3870  78%                                        5

@@ -1,0 +1,31 @@
+
+PKZIP (R)   FAST!   Create/Update Utility   Version 2.04g   02-01-93
+Copr. 1989-1993 PKWARE Inc.  All Rights Reserved.  Shareware Version
+PKZIP Reg. U.S. Pat. and Tm. Off.   Patent No. 5,051,745
+
+þ 80486 CPU detected.
+þ XMS version 3.00 detected.
+þ Novell Netware version 3.11 detected.
+þ DPMI version 0.90 detected.
+
+Searching ZIP: GO.ZIP
+
+ Length  Method   Size  Ratio   Date    Time    CRC-32  Attr  Name
+ ------  ------   ----- -----   ----    ----   -------- ----  ----
+  11498  Implode   3260  72%  03-13-89  16:24  0fd448e9 --w-  GO.C
+    643  Implode    327  50%  03-13-89  13:40  322fad64 --w-  GO.H
+     36  Shrunk      35   3%  03-13-89  10:57  a0b182d1 --w-  GO.PRJ
+   1354  Implode    598  56%  08-02-88  18:20  41c0016c --w-  GOCOUNT.PAS
+   9209  Implode   2447  74%  03-09-89  10:12  caeaece7 --w-  GOFILER.C
+    645  Implode    330  49%  03-09-89  10:12  b3b1d8fc --w-  GOFILER.H
+  21043  Implode   3377  84%  07-29-88  11:30  f090c934 --w-  GOFONT.ASM
+   3604  Implode   1450  60%  07-29-88  11:30  7bf2fc5c --w-  GOFONT.COM
+     20  Stored      20   0%  07-28-88  18:55  a9e90ebd --w-  GOTEST.TXT
+  11928  Implode   3337  73%  03-13-89  16:06  a0b4dc9b --w-  GOUTIL.C
+   3265  Implode   1089  67%  03-13-89  13:41  a99d25cc --w-  GOUTIL.H
+    858  Implode    554  36%  03-13-89  15:34  9d42ef6d --w-  KORS_01A.GO
+    844  Implode    549  35%  03-13-89  15:37  773d65e8 --w-  KORS_01B.GO
+    844  Implode    549  35%  03-13-89  15:38  58ff70c7 --w-  KORS_01C.GO
+    886  Implode    571  36%  03-13-89  15:43  d222a700 --w-  KORS_01D.GO
+ ------          ------  ---                                  -------
+  66677           18493  73%                                       15

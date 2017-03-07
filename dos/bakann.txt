@@ -1,0 +1,38 @@
+
+PKZIP (R)   FAST!   Create/Update Utility   Version 2.04g   02-01-93
+Copr. 1989-1993 PKWARE Inc.  All Rights Reserved.  Shareware Version
+PKZIP Reg. U.S. Pat. and Tm. Off.   Patent No. 5,051,745
+
+þ 80486 CPU detected.
+þ XMS version 3.00 detected.
+þ Novell Netware version 3.11 detected.
+þ DPMI version 0.90 detected.
+
+Searching ZIP: BAKANN.ZIP
+
+ Length  Method   Size  Ratio   Date    Time    CRC-32  Attr  Name
+ ------  ------   ----- -----   ----    ----   -------- ----  ----
+   2001  Implode    859  58%  03-31-89  10:59  b113a7b8 --w-  BAKANN.C
+  21747  Implode  12679  42%  03-31-89  10:59  55e81cfa --w-  BAKANN.EXE
+     36  Stored      36   0%  03-31-89  10:53  d417717c --w-  BAKANN.PRJ
+   6393  Implode   1990  69%  05-12-89  18:08  c6bf1c97 --w-  CONHEX.C
+  19384  Implode  11202  43%  05-12-89  11:10  9f4ef5ef --w-  CONHEX.EXE
+   5003  Implode   1939  62%  05-20-86  15:00  8da6a5de --w-  FILTER.LOD
+   4423  Implode   1189  74%  04-05-89  18:28  a62621aa --w-  FOLIOJ.C
+  26583  Implode  15330  43%  04-05-89  18:27  e316f0bb --w-  FOLIOJ.EXE
+     30  Stored      30   0%  04-05-89  17:42  32c93905 --w-  FOLIOJ.PRJ
+  12513  Implode   4552  64%  04-06-89  11:40  bb629c9a --w-  INTEL.HEX
+  12653  Implode   4605  64%  04-06-89  11:40  e1dbdd5a --w-  MOTORO.HEX
+    598  Implode     97  84%  05-09-89  11:26  1ee6591f --w-  SAVE.LC
+    696  Implode    473  33%  03-24-89  20:06  6c77802e --w-  SCHEMA.CFG
+  15909  Implode   5114  68%  05-05-89  16:53  36eabce6 --w-  SLD0504.LOD
+   1690  Implode    445  74%  04-05-89  17:42  7927696a --w-  TCCONFIG.TC
+  12511  Implode   4623  64%  04-06-89  11:40  b0924bc8 --w-  TEK.HEX
+    232  Shrunk     200  14%  04-04-89  19:14  513551b6 --w-  TEMP.P01
+    500  Implode    375  25%  04-04-89  19:22  5c7b8ad4 --w-  TEST.P01
+    246  Shrunk     177  29%  04-04-89  19:22  029e8fd8 --w-  TEST.P02
+    137  Shrunk     117  15%  04-04-89  19:21  1d4a43ee --w-  TEST.P03
+   1186  Implode    293  76%  04-04-89  19:23  0118782f --w-  TEST.RPT
+  15873  Implode   5138  68%  04-06-89  11:41  f8980b02 --w-  TI.HEX
+ ------          ------  ---                                  -------
+ 160344           71463  56%                                       22

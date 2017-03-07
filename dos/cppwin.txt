@@ -1,0 +1,70 @@
+
+PKZIP (R)   FAST!   Create/Update Utility   Version 2.04g   02-01-93
+Copr. 1989-1993 PKWARE Inc.  All Rights Reserved.  Shareware Version
+PKZIP Reg. U.S. Pat. and Tm. Off.   Patent No. 5,051,745
+
+þ 80486 CPU detected.
+þ XMS version 3.00 detected.
+þ Novell Netware version 3.11 detected.
+þ DPMI version 0.90 detected.
+
+Searching ZIP: CPPWIN.ZIP
+
+ Length  Method   Size  Ratio   Date    Time    CRC-32  Attr  Name
+ ------  ------   ----- -----   ----    ----   -------- ----  ----
+   2180  DeflatN    594  73%  06-04-93  15:19  d06e4007 --w-  TCDEFW.DPR
+     70  DeflatN     67   5%  06-21-93  15:25  2a27d7ca --w-  TCDEFW.DSK
+  10414  DeflatN   3141  70%  06-17-93  11:20  c726102d --w-  PC_INFO.H
+    427  DeflatN    192  56%  06-04-93  15:22  c289d4f3 --w-  ICITYPES.H
+   2032  DeflatN    549  73%  06-10-93  12:12  7837097f --w-  DPMI.C
+   8261  DeflatN   1615  81%  06-08-93  16:03  0e15554e --w-  PROTINT.CPP
+   4548  DeflatN   1130  76%  06-03-93  13:56  a67e3e88 --w-  Z30UTIL.HPP
+    650  DeflatN    280  57%  06-04-93  17:48  23c40631 --w-  PROTINT.DEF
+  14504  DeflatN   3500  76%  06-04-93  10:49  b1efeef3 --w-  SERUTIL.H
+   1287  DeflatN    343  74%  06-08-93  15:58  6c9e276b --w-  DPMI.H
+    637  DeflatN    490  24%  06-08-93  16:16  ca68d443 --w-  PROTINT.OBR
+   5528  DeflatN   3120  44%  06-08-93  16:06  74ceea8f --w-  PROTINT.OBJ
+   1877  DeflatN    524  73%  06-10-93  12:14  b89343e7 --w-  DPMI.CPP
+  15800  DeflatN   6963  56%  06-08-93  16:03  c666d35b --w-  PROTINT.DLL
+   1314  DeflatN    573  57%  06-09-93  14:10  5276315f --w-  PROTINT.DSK
+   5513  DeflatN   1168  79%  06-09-93  14:10  8d612af1 --w-  PROTINT.OPJ
+   1205  DeflatN    451  63%  06-17-93  12:07  e0f031e8 --w-  Z8530DLL.DEF
+  21326  DeflatN  10409  52%  06-22-93  09:45  214d5639 --w-  Z8530DLL.DLL
+  25717  DeflatN   4378  83%  06-03-93  13:58  56fc0e47 --w-  Z30UTIL.CPP
+  23211  DeflatN   6588  72%  01-27-92  10:19  4316cfc9 --w-  Z30.CPP
+   4313  DeflatN   1176  73%  02-18-93  13:58  a922adc1 --w-  Z30INT.HPP
+   9125  DeflatN   2239  76%  02-18-93  16:30  cc0787d1 --w-  Z30INT.CPP
+  11870  DeflatN   3263  73%  02-20-92  10:33  0877cf27 --w-  Z30TIM.CPP
+  17491  DeflatN   3377  81%  06-22-93  09:44  fd2a9be6 --w-  Z8530DLL.CPP
+   1693  DeflatN    586  66%  06-09-93  17:10  c45b9486 --w-  SETUP.OUT
+   3881  DeflatN   2071  47%  06-17-93  17:22  7f8b1488 --w-  TCCONFIG.TC
+   1768  DeflatN    804  55%  06-22-93  09:45  5827158c --w-  Z8530DLL.DSK
+  10940  DeflatN   5761  48%  06-22-93  09:45  328a8f44 --w-  Z8530DLL.OBJ
+    585  DeflatN    128  79%  06-15-93  10:14  19d462a3 --w-  Z30LIB.CPP
+   1240  DeflatN    825  34%  06-17-93  11:28  ed9a6751 --w-  DPMI.OBJ
+   1536  DeflatN    483  69%  06-10-93  12:25  3895972a --w-  Z8530DLL.LIB
+    433  DeflatN    115  74%  06-10-93  10:49  612d0c6a --w-  SDLC.DBG
+     89  DeflatN     78  13%  06-11-93  17:28  c0b8ee89 --w-  Z8530.VCW
+    257  DeflatN    133  49%  06-11-93  17:28  097270e3 --w-  Z8530.WSP
+   4753  DeflatN   1207  75%  06-11-93  17:25  2bddcd5f --w-  Z8530.MAK
+    133  DeflatN     71  47%  06-15-93  10:12  ae96958b --w-  FUN
+   5611  DeflatN   2514  56%  06-17-93  16:11  04fb1919 --w-  Z30LIB.OBJ
+   6345  DeflatN   1513  77%  06-22-93  09:45  cf4efbd4 --w-  Z8530DLL.PRJ
+  17476  DeflatN   3376  81%  06-22-93  09:34  a0336e8f --w-  Z8530DLL.BAK
+    230  DeflatN    137  41%  06-15-93  10:34  70bec313 --w-  STATE.RST
+  11715  DeflatN   2861  76%  06-21-93  13:08  d7824fa6 --w-  ZTEST.CPP
+   1174  DeflatN    427  64%  06-17-93  12:04  141bcc86 --w-  FUN.DEF
+  11715  DeflatN   2863  76%  06-21-93  12:57  0b1c00b3 --w-  ZTEST.BAK
+   1480  DeflatN    421  72%  06-17-93  16:24  810cc38f --w-  BUFFER.BAK
+   1478  DeflatN    424  72%  06-18-93  14:36  cb20275a --w-  BUFFER.H
+  10354  DeflatN   3130  70%  06-17-93  10:41  dd2d80f4 --w-  PC_INFO.BAK
+ 127073  DeflatN   9833  93%  06-17-93  12:02  b6a6bd91 --w-  Z8530DLL.OUT
+  24938  DeflatN  10837  57%  06-21-93  13:12  2353205d --w-  ZTEST.OBJ
+   4445  DeflatN    847  81%  06-17-93  17:46  854436e1 --w-  TCDEF.DPR
+  11580  DeflatN   2824  76%  06-17-93  18:03  8d42b95e --w-  ZTEST.OLD
+   2671  DeflatN    896  67%  06-21-93  14:01  f79dff7b --w-  ZTEST.DSK
+  47590  DeflatN  21401  56%  06-21-93  13:12  ed723be9 --w-  ZTEST.EXE
+    134  DeflatN     92  32%  06-21-93  13:12  4e6eda65 --w-  TCDEF.DSK
+   5983  DeflatN   1457  76%  06-21-93  13:57  311eb1ac --w-  ZTEST.OPJ
+ ------          ------  ---                                  -------
+ 508600          134245  74%                                       54

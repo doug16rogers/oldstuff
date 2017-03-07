@@ -1,0 +1,28 @@
+
+PKZIP (R)   FAST!   Create/Update Utility   Version 2.04g   02-01-93
+Copr. 1989-1993 PKWARE Inc.  All Rights Reserved.  Shareware Version
+PKZIP Reg. U.S. Pat. and Tm. Off.   Patent No. 5,051,745
+
+þ 80486 CPU detected.
+þ XMS version 3.00 detected.
+þ Novell Netware version 3.11 detected.
+þ DPMI version 0.90 detected.
+
+Searching ZIP: AUTO.ZIP
+
+ Length  Method   Size  Ratio   Date    Time    CRC-32  Attr  Name
+ ------  ------   ----- -----   ----    ----   -------- ----  ----
+      7  Stored       7   0%  09-20-89  02:57  c6c7add5 --w-  8X14.COM
+      7  Stored       7   0%  09-20-89  01:27  960a3c66 --w-  8X16.COM
+      9  Stored       9   0%  09-20-89  01:32  06ba5127 --w-  8X8.COM
+   4962  Implode   1659  67%  09-13-89  19:54  7755084a --w-  AUTOMAT.C
+  38368  Implode  17570  55%  09-13-89  19:57  33ac8726 --w-  AUTOMAT.EXE
+     22  Stored      22   0%  09-06-89  14:28  9e6d280c --w-  AUTOMAT.PRJ
+   1690  Implode    464  73%  09-13-89  19:57  3e687b12 --w-  AUTOMAT.TC
+  15555  Implode   3102  81%  09-05-89  21:30  09fcb5b4 --w-  CUTILL.C
+  39591  Implode   7585  81%  09-29-89  12:16  9c964dc7 --w-  L.ASM
+  18233  Implode   1311  93%  09-29-89  12:16  176a669c --w-  L.COM
+    150  Shrunk      98  35%  09-29-89  12:16  d63f0b2d --w-  L.MAP
+   1690  Implode    462  73%  09-13-89  19:56  35e6864a --w-  TCCONFIG.TC
+ ------          ------  ---                                  -------
+ 120284           32296  74%                                       12

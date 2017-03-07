@@ -1,0 +1,44 @@
+
+PKZIP (R)   FAST!   Create/Update Utility   Version 2.04g   02-01-93
+Copr. 1989-1993 PKWARE Inc.  All Rights Reserved.  Shareware Version
+PKZIP Reg. U.S. Pat. and Tm. Off.   Patent No. 5,051,745
+
+þ 80486 CPU detected.
+þ XMS version 3.00 detected.
+þ Novell Netware version 3.11 detected.
+þ DPMI version 0.90 detected.
+
+Searching ZIP: C_UTILS.ZIP
+
+ Length  Method   Size  Ratio   Date    Time    CRC-32  Attr  Name
+ ------  ------   ----- -----   ----    ----   -------- ----  ----
+    198  Shrunk     141  29%  10-05-89  11:22  1e29f750 --w-  CONSTS.H
+  16171  Implode   3172  81%  10-05-89  11:21  9f451932 --w-  CUTIL.C
+   5082  Implode   1798  65%  10-16-89  15:32  8e3fd74c --w-  CUTIL.H
+    740  Implode    459  38%  02-15-89  08:03  160f1475 --w-  DO_FILE.C
+    313  Shrunk     223  29%  03-15-89  17:09  b8c9a1f7 --w-  DO_FILE.H
+    401  Implode    101  75%  01-12-89  11:25  737861f8 --w-  HED.C
+   3552  Implode   1265  65%  02-08-89  13:10  8b02bbd8 --w-  KEYS.H
+   7912  Implode   2152  73%  09-27-89  16:48  9afb053f --w-  SC.C
+  36269  Implode  20386  44%  09-27-89  17:15  862adc9c --w-  SC.EXE
+     36  Stored      36   0%  09-27-89  09:36  81aa9fbe --w-  SC.PRJ
+   1690  Implode    444  74%  09-27-89  15:30  f6e6fbc4 --w-  SC.TC
+  23878  Implode   5485  78%  02-15-89  08:04  3ac97720 --w-  SENDREC.C
+    807  Implode    459  44%  01-16-89  10:55  47aa683e --w-  SENDREC.H
+   3379  Implode   1023  70%  09-25-89  15:54  4f88b90e --w-  SER.H
+  16543  Implode   3918  77%  09-27-89  17:14  d8c576ad --w-  SERCOM.C
+  10812  Implode   2842  74%  09-27-89  17:04  1f1ea0f2 --w-  SERCOM.H
+   1749  Implode    568  68%  09-03-89  00:29  705fc94c --w-  SERDEF.H
+  42132  Implode   6342  85%  09-25-89  17:10  5b3a0881 --w-  SERIAL.C
+   9156  Implode   2622  72%  09-25-89  16:01  642508ec --w-  SERIAL.H
+    384  Implode    233  40%  09-25-89  15:42  fa907f40 --w-  SYSDEF.H
+   1690  Implode    443  74%  09-27-89  16:22  bcc421a7 --w-  TCCONFIG.TC
+    768  Implode     51  94%  09-27-89  12:51  9342fec2 --w-  TEST.FUN
+    205  Shrunk      83  60%  09-27-89  16:58  8e84ae58 --w-  TEST205.FUN
+    510  Implode     48  91%  09-27-89  12:52  24622fdf --w-  TEST510.FUN
+    511  Implode     48  91%  09-27-89  12:53  c2fcf7f8 --w-  TEST511.FUN
+    512  Implode     48  91%  09-27-89  12:54  1f1715e9 --w-  TEST512.FUN
+    513  Implode     48  91%  09-27-89  12:54  2d1292e8 --w-  TEST513.FUN
+    127  Shrunk     117   8%  02-09-89  19:13  15d28c39 --w-  ZIATECH.H
+ ------          ------  ---                                  -------
+ 186040           54555  71%                                       28
